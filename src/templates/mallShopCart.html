@@ -1,0 +1,59 @@
+<div class="lobby-mall-shop-cart" ng-controller="mallShopCartController">
+    <a class="btn lobby-icon-btn" ng-click="back()">
+        <i class="fa fa-arrow-left lobby-menu"></i>
+    </a>
+    <a class="btn lobby-icon-btn fixed-right" ng-click="edit()">
+        <i ng-class="{fa:true, 'fa-edit':!isEdit, 'lobby-menu':true,'fa-check':isEdit}"></i>
+    </a>
+    <div class="lobby-mall-details-header" style="z-index: 66;
+    position: relative;background: #fff;">购物车</div>
+
+    <div class="scrollable community-view" style="background: #efefef;">
+        <div class="scrollable-content">
+            <ul class="lobby-shop-cart-list">
+                <li ng-repeat="good in shopCartList">
+                    <div ng-class="{'c-box':true,'edit-status':isEdit}">
+                        <i ng-class="{fa:true,'fa-fw':true, 'fa-square-o':!good.choose,'fa-check-square-o':good.choose}" ng-click="good.choose=!good.choose"></i>
+                    </div>
+                    <div ng-class="{'i-box':true,'edit-status':isEdit}">
+                        <img ng-src={{good.img}}>
+                    </div>
+
+                    <div ng-class="{desc:true,'edit-status':isEdit}">
+                        <div class="ctx">
+                            <p class="name">{{good.name}}</p>
+                            <p class="color">{{good.color}}</p>
+                            <p class="origin"><span>{{good.origin}}</span></p>
+
+                            <p class="price">
+                                <i class="fa fa-cny"></i>{{good.price}}
+                                <span class="num" ng-show="!isEdit">X{{good.num}}</span>
+                                <span class="num" ng-show="isEdit">
+                                    <i class="fa fa-minus-square-o fa-fw" style="float: left;margin-top: 2px;color:#777" ng-click="minusGoodNum(good)"></i>
+                                    <input type="tel" min="0" class="form-control good-num" ng-model="good.num" value="{{good.num}}" style="float: left">
+                                    <i class="fa fa-plus-square-o fa-fw" style="float: left;margin-top: 2px;color:#777" ng-click="addGoodNum(good)"></i>
+                                </span>
+                            </p>
+                        </div>
+
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="navbar navbar-app navbar-absolute-bottom" style="position: fixed;color: #333;    border-top: 1px solid #ddd;" >
+        <div class="row" style="font-size: 18px;">
+            <div class="col-xs-7" style="text-align:left;line-height: 50px;padding-right: 0;padding-left: 30px;">
+                <span ng-show="isEdit"  ng-click="chooseAll()"><i ng-class="{fa:true, 'fa-check-square-o':isAllChoose,'fa-square-o':!isAllChoose,'fa-fw':true}"></i>全选</span>  合计:<i class="fa fa-cny"></i> {{totalPrice}}
+            </div>
+
+            <div class="col-xs-5" style="padding-right: 35px;">
+                <a ng-class="{btn:true, 'btn-info':true, 'btn-yellow':!isEdit, 'btn-block':true,'btn-disabled':isEdit}" style="line-height: 34px;margin: 8px;color: #fff;" ng-click="goToPay()">去结算({{listLen}})</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>

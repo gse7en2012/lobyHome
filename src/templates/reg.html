@@ -1,0 +1,44 @@
+<div ui-toggle="uiSidebarLeft" class="btn lobby-icon-btn">
+    <i class="fa fa-bars lobby-menu"></i>
+</div>
+
+
+<div class=" lobby-reg-content" ng-controller="regController">
+    <!--<div class="lobby-activity-header">乐比社区</div>-->
+    <div class="step1" ng-show="stepNow==1">
+        <div class="row">
+            <h2>乐比社区欢迎您!</h2>
+            <input type="text" class="form-control input-lg" placeholder="姓名" ng-model="name">
+            <input type="tel" class="form-control input-lg" placeholder="手机号码" ng-model="phone">
+
+            <p><i ng-class="{fa:true, 'fa-square-o':!isRead,'fa-check-square-o':isRead}" style="font-size: 20px;position: relative;top: 2px;width: 18px;" ng-click="isRead=!isRead"></i> 我已阅读<a href='#'>乐比共享免责声明</a></p>
+        </div>
+        <div class="row">
+            <a ng-class="{btn:true, 'btn-block':true,'btn-disabled':!name||!phone||!isRead} " ng-click="stepNext()">下一步</a>
+        </div>
+
+    </div>
+    <div class="step2" ng-show="stepNow==2">
+        <div class="row" style="margin-bottom: 10px;font-size: 20px;">
+
+                {{!isSend?'请确认您的电话号码':'验证码已发送至'}}:<br>{{phone}}
+
+        </div>
+
+        <div class="row clearfix">
+
+            <input type="tel" class="form-control code input-lg" placeholder="验证码" ng-model="code">
+
+            <a ng-click="sendCode()" ng-class="{'btn-lg':true,btn:true, 'btn-disabled':isSend,'code-btn':true}">{{isSend?cc+'s后重发':'获取验证码'}}</a>
+
+        </div>
+        <div class="row">
+            <a ng-class="{btn:true, 'btn-block':true,'btn-disabled':!code}" ui-turn-on="modal1" ng-click="lastStep(e)">下一步</a>
+        </div>
+
+    </div>
+
+</div>
+<div ui-content-for="modals">
+    <div ng-include="'modal1.html'"></div>
+</div>

@@ -1,0 +1,51 @@
+angular.module('LobyHome')
+
+.controller('communitySearchController', function($scope,$timeout,$rootScope,updateWxTitle){
+    updateWxTitle('搜索社区');
+    $scope.commList=[
+        {
+            name:'景龙社区服务中心',
+            img:'images/c1.jpg',
+            distance:'0.25KM',
+            id:1
+        },
+        {
+            name:'啊七康乐社区',
+            img:'images/c2.jpg',
+            distance:'1.25KM',
+            id:2
+        },
+        {
+            name:'大煎饼社区',
+            img:'images/c3.jpg',
+            distance:'2.35KM',
+            id:3
+        },
+        {
+            name:'公益爱心社区',
+            img:'images/t1.jpg',
+            distance:'2.65KM',
+            id:4
+        },
+        {
+            name:'广州花园酒店社区',
+            img:'images/t2.jpg',
+            distance:'3.05KM',
+            id:5
+        },
+        {
+            name:'猎德新村',
+            img:'images/t2.jpg',
+            distance:'3.05KM',
+            id:6
+        },
+        {
+            name:'琶洲保利康乐中心',
+            img:'images/t2.jpg',
+            distance:'3.05KM',
+            id:7
+        }
+
+    ]
+
+});

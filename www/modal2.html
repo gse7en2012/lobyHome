@@ -1,0 +1,29 @@
+<div class="modal modal-overlay" ui-if='modal2' ui-state='modal2'>
+  <div ng-show="signLoading" class="app-content-loading">
+    <i class="fa fa-spinner fa-spin loading-spinner"></i>
+  </div>
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close"
+                ui-turn-off="modal2">&times;</button>
+
+      </div>
+      <div class="modal-body">
+        <p class="title">恭喜你<br>报名成功</p>
+        <p >
+          活动名称: <br>国学进社区
+        </p>
+        <p>
+          活动时间:<br>2016年04月03日<br>14:00~16:00
+        </p>
+        <a class="btn btn-lg btn-block "  ui-turn-off="modal2">
+          查看已报名活动
+        </a>
+      </div>
+      <!--<div class="modal-footer">-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>

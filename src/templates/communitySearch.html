@@ -1,0 +1,33 @@
+<div style="background: #efefef" ng-controller="communitySearchController">
+    <div class="row" style="background: #E98023;">
+        <div class="col-xs-11">
+            <div class="lobby-community-search">
+                <input type="text" class="form-control" placeholder="输入社区名称...14px" ng-model="keyword">
+                <span class="fa fa-search"></span>
+            </div>
+        </div>
+
+        <a href="#/community" class="cancel" style="color: #fff">取消</a>
+
+    </div>
+    <div class="row" style="background: #fff;margin-top: 15px;margin-bottom: 15px;">
+        <div class="col-xs-12 search-header">
+            <a href="#/community/list">
+                搜索附近<i class="fa fa-arrow-right" style="float: right;margin-right: 25px;margin-top: 5px;"></i> 22px
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 search-sub-header">
+            搜索历史
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="search-history">
+                <li ng-repeat="com in commList"><a ng-href="#/community/details/{{com.id}}"><i
+                        class="fa fa-map-marker fa-fw"></i> {{com.name}} 16px</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

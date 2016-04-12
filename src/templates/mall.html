@@ -1,0 +1,98 @@
+<div class="lobby-mall" ng-controller="mallController">
+    <div class="scrollable community-view"  style="background: #fff;">
+        <div class="scrollable-content">
+            <div class="lobby-mall-header">
+                <div ui-toggle="uiSidebarLeft" class="btn lobby-icon-btn" style="top: 0;">
+                    <i class="fa fa-bars lobby-menu"></i>
+                </div>
+                <div ui-toggle="uiSidebarRight" class="btn lobby-icon-btn" style="top: 0;right: 0">
+                    <i class="fa fa-user lobby-menu" style="position: absolute;right: 10px;left:auto;"></i>
+                </div>
+                <h1>LOBI MALL</h1>
+
+                <div class="lobby-mall-search">
+                    <input type="text" class="form-control" placeholder="商品名称" ng-model="keyword">
+                    <span class="fa fa-search"></span>
+                </div>
+                <p class="lobby-mall-menu" ng-click="isMenuShow=!isMenuShow">分类目录<i
+                        ng-class="{fa:true, 'fa-play':true,'fa-fw':true, 'fa-rotate-90':!isMenuShow,'fa-rotate-270':isMenuShow}"></i>
+                </p>
+
+                <div class="dropdown-menu lobby-list-menu" ng-show="isMenuShow">
+                    <ul class="header">
+                        <li ng-click="menuIndex=1" ng-class="{active:menuIndex==1}">创客空间</li>
+                        <li ng-click="menuIndex=2" ng-class="{active:menuIndex==2}">有机生活</li>
+                        <li ng-click="menuIndex=3" ng-class="{active:menuIndex==3}">家庭健康</li>
+                    </ul>
+                    <ul class="content" ng-show="menuIndex==1">
+                        <li>Make Block</li>
+                        <li>PI Kids</li>
+                        <li>PI Kids</li>
+                    </ul>
+                    <ul class="content" ng-show="menuIndex==2">
+                        <li>柬埔寨吴哥窟</li>
+                        <li>越南芽庄</li>
+                        <li>菲律宾马尼拉</li>
+                    </ul>
+                    <ul class="content" ng-show="menuIndex==3">
+                        <li>希腊雅典</li>
+                        <li>威尼斯威尼斯</li>
+                        <li>北极圈斯德哥尔摩</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lobby-activity-carousel"
+                 style="height:0;padding-bottom: 50%;overflow: hidden;margin-top: 4px;: ">
+                <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide
+                    rn-carousel-transition="hexagon" rn-carousel-controls-allow-loop rn-carousel-easing
+                    rn-carousel-buffered
+                    style="padding-bottom: 50%">
+                    <li ng-repeat="img in imgList" ng-click="gotoMallDetails()">
+                        <img ng-src="{{img}}"/>
+                    </li>
+                </ul>
+                <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1"
+                     slides="imgList"></div>
+            </div>
+            <div class="lobby-community-box">
+                <div class="c-item">
+                    <h3>创客空间20px</h3>
+
+                    <div class="c-item-box">
+
+                        <ul ng-style="mItemBoxUlStyle">
+                            <li ng-repeat="act in goodList" ng-style="mItemBoxLiStyle" class="mall-show-list">
+                                <a ng-href="#/mall/details/{{act.id}}">
+                                    <div class="img-box" ng-style="mImgBoxStyle">
+                                        <img ng-src="{{act.img}}">
+
+                                        <p>{{act.name}}</p>
+                                    </div>
+
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="c-item">
+                    <h3>有机生活</h3>
+
+                    <div class="c-item-box">
+
+                        <ul ng-style="mItemBoxUlStyle">
+                            <li ng-repeat="act in goodList2" ng-style="mItemBoxLiStyle" class="mall-show-list">
+                                <a ng-href="#/mall/details/{{act.id}}">
+                                    <div class="img-box" ng-style="mImgBoxStyle">
+                                        <img ng-src="{{act.img}}">
+                                        <p>{{act.name}}</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="modal modal-overlay" ui-if='modal1' ui-state='modal1'>
+  <div ng-show="signLoading" class="app-content-loading">
+    <i class="fa fa-spinner fa-spin loading-spinner"></i>
+  </div>
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" ui-turn-off="modal1" ng-click="returnHome()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="title" style="transform: translateY(70%);">恭喜你成为<br>乐比居民!</p>
+      </div>
+
+    </div>
+  </div>
+</div>

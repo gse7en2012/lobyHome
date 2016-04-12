@@ -1,0 +1,37 @@
+<div ng-click="back()" class="btn lobby-icon-btn">
+    <i class="fa fa-arrow-left lobby-menu"></i>
+</div>
+
+<div class="lobby-mall-address" ng-controller="mallOrderListController">
+
+
+    <div class="lobby-mall-details-header" style="z-index: 66;
+    position: relative;background: #fff;">全部订单
+    </div>
+
+    <div class="scrollable order-list-view">
+        <div class="scrollable-content" style="padding-bottom: 50px;">
+            <div class="row" ng-repeat="order in orderList">
+                <div class="col-xs-12">
+                    <a class="content" ng-href="#/mall/order/details/222">
+                        <div class="i-box">
+                            <img ng-src="{{order.img}}" img-load-auto-size>
+                        </div>
+                        <div class="desc">
+                            <p class="name">{{order.name}}</p>
+                            <p class="date">2016-04-03 12:43:33</p>
+                            <p class="price"><i class="fa fa-cny"></i>{{order.price}} </p>
+                        </div>
+                        <span class="num">X{{order.num}}</span>
+                    </a>
+
+                    <div class="bottom">
+                        <span class="pull-left">待付款</span>
+                        <span class="pull-right"><a class="btn btn-yellow-f btn-sm">退换货</a><a
+                                class="btn btn-yellow btn-sm">去付款</a> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<a class="btn lobby-icon-btn" href="#/community/search">
+    <i class="fa fa-arrow-left lobby-menu"></i>
+</a>
+<div class="scrollable" ng-controller="communityController">
+    <div class="scrollable-content">
+        <div class="lobby-community-header" style="background: none;border-bottom: 0;margin-bottom: -50px;">
+            <i class="fa fa-map-marker map"  ng-click="goToMap()" style="z-index: 110;
+    background: #fff;
+    border: 1px solid #e98023;"></i>
+            <i class="fa fa-map-o map-b"  style="z-index: 112;    font-size: 16px;
+    top: 22px;
+    right: 20px;" ng-click="goToMap()"></i>
+        </div>
+        <ul class="list-group lobby-community-list">
+            <li ng-repeat="comm in commList">
+                <a ng-href="#/community/details/{{comm.id}}">
+                    <img ng-src="{{comm.img}}" width="100%">
+                    <p>{{comm.name}}</p>
+                </a>
+                <p class="location">距离您{{comm.distance}}</p>
+            </li>
+        </ul>
+    </div>
+</div>

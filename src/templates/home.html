@@ -1,0 +1,16 @@
+<div ui-toggle="uiSidebarLeft" class="btn lobby-icon-btn">
+    <i class="fa fa-bars lobby-menu"></i>
+</div>
+
+<section class="scrollable" ng-controller="activityController">
+    <div class="scrollable-content lobby-activity-content">
+        <ul class="list-group lobby-activity-list">
+            <!--<li ng-repeat="l in list" class="list-group-item" ng-click="toggleS()">{{l}}</li>-->
+            <li ng-repeat="act in actList" ng-click="goToDetails(act.Community_id)">
+                <img ng-src="{{act.indexImg}}" width="100%">
+
+                <p>{{act.name}}</p>
+            </li>
+        </ul>
+    </div>
+</section>

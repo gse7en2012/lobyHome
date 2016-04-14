@@ -10,10 +10,6 @@ angular.module('LobyHome')
                 };
 
                 apiService.getActivityList().then(function (data) {
-                    data.forEach(function(item){
-                        var imglist=eval(item.images);
-                        item.indexImg=imglist[0];
-                    });
                     $scope.actList=data;
                 });
                 //console.log($cookies.get('nn'));

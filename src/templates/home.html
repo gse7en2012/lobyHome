@@ -6,8 +6,8 @@
     <div class="scrollable-content lobby-activity-content">
         <ul class="list-group lobby-activity-list">
             <!--<li ng-repeat="l in list" class="list-group-item" ng-click="toggleS()">{{l}}</li>-->
-            <li ng-repeat="act in actList" ng-click="goToDetails(act.Community_id)">
-                <img ng-src="{{act.indexImg}}" width="100%">
+            <li ng-repeat="act in actList" ng-click="goToDetails(act.id)">
+                <img ng-src="{{act.icon_url}}" width="100%">
 
                 <p>{{act.name}}</p>
             </li>

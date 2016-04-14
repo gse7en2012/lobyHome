@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http, $q) {
-    var remoteAddress='http://www.lobishare.com/api/';
+    var remoteAddress='http://lobi.gushiyingxiong.com/api/';
     function httpRequest(opts) {
         var d = $q.defer();
         $http(opts).success(d.resolve).error(d.reject);
@@ -21,7 +21,7 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
     this.getActivityList=function(){
         return httpRequest({
             method:'GET',
-            url:remoteAddress+'activity'
+            url:remoteAddress+'newest_activity'
         }).then(transferData)
     };
     this.getActivityDetails=function(id){

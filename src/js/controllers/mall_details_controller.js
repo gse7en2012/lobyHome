@@ -62,4 +62,6 @@ angular.module('LobyHome')
     $scope.addGoodNum=function(){
         $scope.buyNum++;
     };
+
+
 });

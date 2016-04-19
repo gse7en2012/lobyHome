@@ -2,10 +2,11 @@
 
 <div class="scrollable lobby-profile">
     <div class="avatar">
-        <img src="images/c1.jpg">
+        <img src="images/avatar.jpg" ng-hide="userInfo.headImgUrl">
+        <img ng-src="{{userInfo.headImgUrl}}" ng-show="userInfo.headImgUrl" />
     </div>
-    <h1 class="name">微信名字</h1>
-
+    <h1 class="name" ng-if="userInfo.nickname">{{userInfo.nickname}}</h1>
+    <h1 class="name" ng-if="!userInfo.nickname">请登录</h1>
     <div class="">
         <div class="list-group" ui-turn-off='uiSidebarRight'>
             <a class="list-group-item lobby-sidebar-item" href="#/mall/shopcart">购物车<i

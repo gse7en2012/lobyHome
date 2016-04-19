@@ -22,7 +22,7 @@ var lobyApp=angular.module('LobyHome', [
         .when('/mall/details/:good_id', {templateUrl: 'mallDetails.html', reloadOnSearch: false})
         .when('/share', {templateUrl: 'share.html', reloadOnSearch: false})
         .when('/community', {templateUrl: 'community.html', reloadOnSearch: false})
-        .when('/activity/:art_id', {templateUrl: 'activity.html', reloadOnSearch: false})
+        .when('/activity/:act_id', {templateUrl: 'activity.html', reloadOnSearch: false})
         .when('/community/list', {templateUrl: 'communityList.html', reloadOnSearch: false})
         .when('/community/search', {templateUrl: 'communitySearch.html', reloadOnSearch: false})
         .when('/community/details/:cid', {templateUrl: 'communityDetails.html', reloadOnSearch: false})

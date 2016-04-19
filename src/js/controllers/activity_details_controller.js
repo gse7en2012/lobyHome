@@ -1,18 +1,10 @@
 angular.module('LobyHome')
 
     .controller('activityDetailsController', function ($scope, $timeout, $rootScope,$routeParams,apiService,updateWxTitle) {
-        $scope.imgList = [
-            'images/t1.jpg',
-            'images/t2.jpg',
-            'images/c1.jpg',
-            'images/c2.jpg'
-        ];
+        $scope.actId=$routeParams.act_id;
+        $scope.imgList=[];
 
-
-        //document.title=$scope.actInfo.actName;
-        //console.log($routeParams.art_id);
-
-        apiService.getActivityDetails($routeParams.art_id).then(function(data){
+        apiService.getActivityDetails($routeParams.act_id).then(function(data){
             var details=data[0];
             $scope.actInfo = {
                 commName: details.sponsor_community,
@@ -27,7 +19,7 @@ angular.module('LobyHome')
             };
             $scope.imgList = eval(details.images);
 
-            updateWxTitle(details.actName);
+            updateWxTitle(details.name);
         })
 
 

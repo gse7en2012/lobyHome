@@ -24,7 +24,7 @@
 
                     <p class="lobby-activity-name" style="text-align: center;font-size: 18px;">{{actInfo.actName}}</p>
 
-                    <div class="lobby-full-name clearfix" style="margin-top: 18px;font-size: 14px;position: relative">
+                    <div class="lobby-full-name clearfix" style="margin-top: 18px;font-size: 14px;position: relative" ng-click="showLocation(actInfo.location,actInfo.location)">
                         {{actInfo.location}}
                         <i class="fa fa-map-marker" style="border-radius: 16px;
     background: #E98023;
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-xs-6">
                     <!--<div class="col-xs-4">-->
-                    <a class="btn btn-info btn-block btn-lg" ui-turn-on="modal2" ng-click="sign()">
+                    <a class="btn btn-info btn-block btn-lg"  ng-click="testWechatPay(actId)">
                         <i class="fa fa-sign-in"></i> 立即报名
                     </a>
                     <!--</div>-->

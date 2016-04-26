@@ -20,25 +20,26 @@
 
                 <div class="dropdown-menu lobby-list-menu" ng-show="isMenuShow">
                     <ul class="header">
-                        <li ng-click="menuIndex=1" ng-class="{active:menuIndex==1}">创客空间</li>
-                        <li ng-click="menuIndex=2" ng-class="{active:menuIndex==2}">有机生活</li>
-                        <li ng-click="menuIndex=3" ng-class="{active:menuIndex==3}">家庭健康</li>
+                        <!--<li ng-click="menuIndex=1" ng-class="{active:menuIndex==1}">创客空间</li>-->
+                        <!--<li ng-click="menuIndex=2" ng-class="{active:menuIndex==2}">有机生活</li>-->
+                        <!--<li ng-click="menuIndex=3" ng-class="{active:menuIndex==3}">家庭健康</li>-->
+
+                        <li ng-click="changeMenuIndex(cate.index)" ng-class="{active:menuIndex==cate.index}" ng-repeat="cate in categories">{{cate.name}}</li>
+
                     </ul>
-                    <ul class="content" ng-show="menuIndex==1">
-                        <li>Make Block</li>
-                        <li>PI Kids</li>
-                        <li>PI Kids</li>
+                    <ul class="content" ng-show="menuIndex==cate.index" ng-repeat="cate in categories">
+                        <li ng-repeat="cc in cate.children">{{cc.name}}</li>
                     </ul>
-                    <ul class="content" ng-show="menuIndex==2">
-                        <li>柬埔寨吴哥窟</li>
-                        <li>越南芽庄</li>
-                        <li>菲律宾马尼拉</li>
-                    </ul>
-                    <ul class="content" ng-show="menuIndex==3">
-                        <li>希腊雅典</li>
-                        <li>威尼斯威尼斯</li>
-                        <li>北极圈斯德哥尔摩</li>
-                    </ul>
+                    <!--<ul class="content" ng-show="menuIndex==2">-->
+                        <!--<li>柬埔寨吴哥窟</li>-->
+                        <!--<li>越南芽庄</li>-->
+                        <!--<li>菲律宾马尼拉</li>-->
+                    <!--</ul>-->
+                    <!--<ul class="content" ng-show="menuIndex==3">-->
+                        <!--<li>希腊雅典</li>-->
+                        <!--<li>威尼斯威尼斯</li>-->
+                        <!--<li>北极圈斯德哥尔摩</li>-->
+                    <!--</ul>-->
                 </div>
             </div>
 
@@ -48,8 +49,8 @@
                     rn-carousel-controls-allow-loop rn-carousel-easing
                     rn-carousel-buffered
                     style="padding-bottom: 50%">
-                    <li ng-repeat="img in imgList" ng-click="gotoMallDetails()">
-                        <img ng-src="{{img}}"/>
+                    <li ng-repeat="img in imgList">
+                        <a href="{{img.banner_link}}"><img ng-src="{{img.banner_img}}"/></a>
                     </li>
                 </ul>
                 <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1"
@@ -62,12 +63,12 @@
                     <div class="c-item-box">
 
                         <ul ng-style="mItemBoxUlStyle">
-                            <li ng-repeat="act in goodList" ng-style="mItemBoxLiStyle" class="mall-show-list">
-                                <a ng-href="#/mall/details/{{act.id}}">
+                            <li ng-repeat="good in goodList" ng-style="mItemBoxLiStyle" class="mall-show-list">
+                                <a ng-href="#/mall/details/{{good.id}}">
                                     <div class="img-box" ng-style="mImgBoxStyle">
-                                        <img ng-src="{{act.img}}">
+                                        <img ng-src="{{good.icon_url}}">
 
-                                        <p>{{act.name}}</p>
+                                        <p>{{good.name}}</p>
                                     </div>
 
                                 </a>
@@ -81,11 +82,11 @@
                     <div class="c-item-box">
 
                         <ul ng-style="mItemBoxUlStyle">
-                            <li ng-repeat="act in goodList2" ng-style="mItemBoxLiStyle" class="mall-show-list">
-                                <a ng-href="#/mall/details/{{act.id}}">
+                            <li ng-repeat="good in goodList2" ng-style="mItemBoxLiStyle" class="mall-show-list">
+                                <a ng-href="#/mall/details/{{good.id}}">
                                     <div class="img-box" ng-style="mImgBoxStyle">
-                                        <img ng-src="{{act.img}}">
-                                        <p>{{act.name}}</p>
+                                        <img ng-src="{{good.icon_url}}">
+                                        <p>{{good.name}}</p>
                                     </div>
                                 </a>
                             </li>

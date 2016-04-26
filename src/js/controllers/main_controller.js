@@ -1,15 +1,21 @@
 angular.module('LobyHome.controllers.Main', [])
 
-    .controller('MainController', function ($scope, $timeout, $rootScope, $http, $cookies, $routeParams) {
-        var appId       = 'wxc9aa23b94ca6c9bb';
+    .controller('MainController', function ($scope, $timeout, $rootScope, $http, $cookies,apiService) {
+        var appId = 'wxc9aa23b94ca6c9bb';
         var redirectUri = encodeURIComponent('http://lobicom.com/wechat/ask_userinfo');
-        var ENVDEV      = true;
+        var ENVDEV = false;
+        var lobiUid = $cookies.get('lobi_userid');
 
 
-        var lobiName = $cookies.get('lobi_userid');
-
-        if (!ENVDEV && !lobiName) {
-            var state     = location.hash.split('#/')[1].replace(/(\?|\/|&|=)/, ' ').split(' ')[0];
+        if (!ENVDEV && !lobiUid) {
+            var state;
+            var hashList = location.hash.split('#/');
+            if (hashList.length <= 1) {
+                state = '/'
+            } else {
+                state = hashList[1].replace(/(\?|\/|&|=)/, ' ').split(' ')[0];
+            }
+            console.log(state);
             location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize' +
                 '?appid=' + appId + '&' +
                 'redirect_uri=' + redirectUri + '&' +
@@ -20,19 +26,17 @@ angular.module('LobyHome.controllers.Main', [])
         }
 
         $scope.userInfo = {
-            nickname: 'Gseven',
-            headImgUrl: 'http://wx.qlogo.cn/mmopen/qZRaricprfbtwkFOZtGCY8kbiasGBnDMXKM4ctHNPqia3X4WIYjXGyohZMUHjcJoGBlYop7D1PHJiaERpjCVYY8m4oQFXQfqRrOI/0',
-            userid:lobiName|| 'ooCXtw6AvwmJI6JTcSG9KJxMCQZ4'
+            nickname: $cookies.get('lobi_nickname') ,
+            headImgUrl: $cookies.get('lobi_headimgurl') ,
+            userId: lobiUid
         };
-
-
         $rootScope.$on('$routeChangeStart', function () {
             $rootScope.loading = true;
 
         });
 
         $rootScope.$on('$routeChangeSuccess', function () {
-
+       //     alert(location.href);
             $timeout(function () {
                 $rootScope.loading = false;
             }, 300);
@@ -43,7 +47,7 @@ angular.module('LobyHome.controllers.Main', [])
         $http.get('http://lobicom.com/wechat/create_wx_config?url=' + encodeURI(signUrl)).success(function (data) {
             var _wxSDKConfig = {
                 auth: {
-                    debug: true,
+                    debug: false,
                     appId: data.result.appId, // 必填，公众号的唯一标识
                     timestamp: data.result.timestamp, // 必填，生成签名的时间戳
                     nonceStr: data.result.nonceStr, // 必填，生成签名的随机串
@@ -74,7 +78,7 @@ angular.module('LobyHome.controllers.Main', [])
                         alert('share error!')
                     }
                 });
-                console.log('getLocation canyou');
+
                 wx.getLocation({
                     type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
                     success: function (res) {
@@ -82,7 +86,6 @@ angular.module('LobyHome.controllers.Main', [])
                         var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
                         var speed = res.speed; // 速度，以米/每秒计
                         var accuracy = res.accuracy; // 位置精度
-
 
                         $scope.lat = latitude;
                         $scope.lon = longitude;
@@ -104,25 +107,6 @@ angular.module('LobyHome.controllers.Main', [])
             });
         };
 
-        $scope.testWechatPay = function (actId) {
-            $http.post('/api/activity_order?openid=' + $scope.userInfo.userid + '&activity_id='+actId).success(function (order) {
-                $http.get('/wechat/unified_order?openid='+$scope.userInfo.userid+'&activity_id='+actId+'&nonce_str='+$scope.nonceStr+'&timestamp='+$scope.timestamp).success(function (data) {
-                    var wxPayConfig = {
-                        timestamp: $scope.timestamp.toString() || data.result.timeStamp.toString(), // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-                        nonceStr: data.result.nonceStr.toString(), // 支付签名随机串，不长于 32 位
-                        package: data.result.package.toString(), // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-                        signType: data.result.signType.toString(), // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-                        paySign: data.result.paySign.toString(), // 支付签名
-                        success: function (res) {
-                            // 支付成功后的回调函数
-                            alert('success!')
-                        }
-                    };
-                    wx.chooseWXPay(wxPayConfig);
-                })
-
-            })
-        };
 
 
         $scope.sign = function () {
@@ -132,14 +116,23 @@ angular.module('LobyHome.controllers.Main', [])
             }, 500)
         };
 
+        $scope.logout=function(){
+            $cookies.remove('lobi_userid');
+            $cookies.remove('lobi_nickname');
+            $cookies.remove('lobi_headimgurl');
+            location.href='/';
+            location.reload();
+        };
+
 
         $scope.toggleS = function () {
             $scope.showTopNav = !$scope.showTopNav;
         };
 
-        $scope.back              = function () {
+        $scope.back = function () {
             history.back()
         };
+
         $scope.goToCommunityList = function () {
             location.href = '#/community/search';
         };

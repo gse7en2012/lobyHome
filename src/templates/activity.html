@@ -5,18 +5,18 @@
 <div ng-controller="activityDetailsController" class="scrollable">
     <div class="scrollable-content">
 
-        <div class="lobby-activity-carousel" style="height:0;padding-bottom: 50%;overflow: hidden">
+        <div class="lobby-activity-carousel" style="height:0;padding-bottom: 100%;overflow: hidden">
             <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide
                 rn-carousel-controls-allow-loop rn-carousel-easing rn-carousel-buffered
-                style="padding-bottom: 50%">
+                style="padding-bottom: 100%">
                 <li ng-repeat="img in imgList">
-                    <img ng-src="{{img}}"/>
+                    <img ng-src="{{img}}" img-load-auto-size class="auto-ver"/>
                 </li>
             </ul>
             <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1" slides="imgList"></div>
         </div>
         <div class="lobby-activity-box">
-            <div class="row">
+            <div class="row row-1">
                 <div class="col-xs-6">
                     <p class="lobby-name"
                        style="text-align: center;font-size: 18px;margin-bottom: 0;font-weight: bold;">
@@ -25,34 +25,15 @@
                     <p class="lobby-activity-name" style="text-align: center;font-size: 18px;">{{actInfo.actName}}</p>
 
                     <div class="lobby-full-name clearfix" style="margin-top: 18px;font-size: 14px;position: relative" ng-click="showLocation(actInfo.location,actInfo.location)">
-                        {{actInfo.location}}
-                        <i class="fa fa-map-marker" style="border-radius: 16px;
-    background: #E98023;
-    color: #fff;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    top: 8px;
-    right: 0;"></i>
+                        <i class="fa fa-map-marker"></i>{{actInfo.location}}
+
                     </div>
                     <div class="lobby-concat" style="margin-top: 10px;
-    font-size: 14px;">{{actInfo.concatName}}<i class="fa fa-phone fa-flip-horizontal" style="border-radius: 16px;
-    background: #E98023;
-    color: #fff;
-    position: relative;
-    width: 18px;
-    height: 18px;
-    line-height: 18px;
-    text-align: center;
-    right: 0;
-    font-size: 12px;
-    margin-left: 6px;
-    top: -2px;"></i></div>
+    font-size: 14px;"><i class="fa fa-phone fa-flip-horizontal"></i>{{actInfo.concatName}}</div>
                 </div>
                 <div class="col-xs-6">
                     <!--<div class="col-xs-4">-->
-                    <a class="btn btn-info btn-block btn-lg"  ng-click="testWechatPay(actId)">
+                    <a class="btn btn-info btn-block btn-lg"  ng-click="joinActivity(actId)">
                         <i class="fa fa-sign-in"></i> 立即报名
                     </a>
                     <!--</div>-->

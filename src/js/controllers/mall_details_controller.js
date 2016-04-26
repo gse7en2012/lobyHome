@@ -1,6 +1,14 @@
 angular.module('LobyHome')
 
-.controller('mallDetailsController', function($scope,$timeout,$rootScope,updateWxTitle){
+.controller('mallDetailsController', function($scope,$timeout,$rootScope,$routeParams,apiService,updateWxTitle){
+
+
+    apiService.getProductionDetails($routeParams.good_id).then(function(data){
+
+    });
+
+
+
     $scope.imgList=[
         'images/t1.jpg',
         'images/t2.jpg',

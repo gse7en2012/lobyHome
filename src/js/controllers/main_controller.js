@@ -1,6 +1,6 @@
 angular.module('LobyHome.controllers.Main', [])
 
-    .controller('MainController', function ($scope, $timeout, $rootScope, $http, $cookies,apiService) {
+    .controller('MainController', function ($scope, $timeout, $rootScope, $http, $cookies, apiService) {
         var appId = 'wxc9aa23b94ca6c9bb';
         var redirectUri = encodeURIComponent('http://lobicom.com/wechat/ask_userinfo');
         var ENVDEV = false;
@@ -26,17 +26,18 @@ angular.module('LobyHome.controllers.Main', [])
         }
 
         $scope.userInfo = {
-            nickname: $cookies.get('lobi_nickname') ,
-            headImgUrl: $cookies.get('lobi_headimgurl') ,
+            nickname: $cookies.get('lobi_nickname'),
+            headImgUrl: $cookies.get('lobi_headimgurl'),
             userId: lobiUid
         };
+
         $rootScope.$on('$routeChangeStart', function () {
             $rootScope.loading = true;
 
         });
 
         $rootScope.$on('$routeChangeSuccess', function () {
-       //     alert(location.href);
+            //     alert(location.href);
             $timeout(function () {
                 $rootScope.loading = false;
             }, 300);
@@ -59,7 +60,7 @@ angular.module('LobyHome.controllers.Main', [])
                 }
             };
             $scope.timestamp = data.result.timestamp;
-            $scope.nonceStr  = data.result.nonceStr
+            $scope.nonceStr  = data.result.nonceStr;
 
             wx.config(_wxSDKConfig.auth);
             wx.ready(function () {
@@ -89,6 +90,11 @@ angular.module('LobyHome.controllers.Main', [])
 
                         $scope.lat = latitude;
                         $scope.lon = longitude;
+
+                        $rootScope.lat = latitude;
+                        $rootScope.lon = longitude;
+                        console.log('getLocationSuccess!');
+                        $scope.$broadcast('glc',{msg:'OK'});
                     }
                 });
 
@@ -96,17 +102,16 @@ angular.module('LobyHome.controllers.Main', [])
         });
 
 
-        $scope.showLocation = function (name, desc) {
+        $scope.showLocation = function (lat,lon,name, desc) {
             wx.openLocation({
-                latitude: $scope.lat, // 纬度，浮点数，范围为90 ~ -90
-                longitude: $scope.lon, // 经度，浮点数，范围为180 ~ -180。
+                latitude:lat|| $scope.lat, // 纬度，浮点数，范围为90 ~ -90
+                longitude:lon|| $scope.lon, // 经度，浮点数，范围为180 ~ -180。
                 name: name, // 位置名
                 address: desc, // 地址详情说明
                 scale: 12, // 地图缩放级别,整形值,范围从1~28。默认为最大
                 infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
             });
         };
-
 
 
         $scope.sign = function () {
@@ -116,11 +121,11 @@ angular.module('LobyHome.controllers.Main', [])
             }, 500)
         };
 
-        $scope.logout=function(){
+        $scope.logout = function () {
             $cookies.remove('lobi_userid');
             $cookies.remove('lobi_nickname');
             $cookies.remove('lobi_headimgurl');
-            location.href='/';
+            location.href = '/';
             location.reload();
         };
 

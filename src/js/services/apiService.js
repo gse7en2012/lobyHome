@@ -41,6 +41,12 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             url: remoteAddress + 'community'
         }).then(transferData)
     };
+    this.getCommunityDetails = function (id) {
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'community?id=' + id
+        }).then(transferData)
+    };
 
 
     this.joinActivity = function (data) {
@@ -64,6 +70,13 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             method:'GET',
             url:'/api/homepage'
         })
+    };
+
+    this.getProductionDetails=function(id){
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'products?id=' + id
+        }).then(transferData)
     };
 
 

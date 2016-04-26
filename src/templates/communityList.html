@@ -14,10 +14,10 @@
         <ul class="list-group lobby-community-list">
             <li ng-repeat="comm in commList">
                 <a ng-href="#/community/details/{{comm.id}}">
-                    <img ng-src="{{comm.img}}" width="100%">
+                    <img ng-src="{{comm.icon_url}}" width="100%">
                     <p>{{comm.name}}</p>
                 </a>
-                <p class="location">距离您{{comm.distance}}</p>
+                <p class="location">{{comm.distance}}</p>
             </li>
         </ul>
     </div>

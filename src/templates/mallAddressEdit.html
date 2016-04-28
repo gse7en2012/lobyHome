@@ -1,11 +1,11 @@
 <a href="#/mall/address?uiSidebarRight" class="btn lobby-icon-btn">
     <i class="fa fa-arrow-left lobby-menu"></i>
 </a>
-<div class="lobby-mall-address-add" ng-controller="mallAddressAddController">
+<div class="lobby-mall-address-add" ng-controller="mallAddressEditController">
 
 
     <div class="lobby-mall-details-header" style="z-index: 66;
-    position: relative;background: #fff;">新增收货人
+    position: relative;background: #fff;">修改地址
     </div>
 
     <div class="scrollable address-view address-add-view">
@@ -59,7 +59,7 @@
              style="position: fixed;color: #333; border-top: 1px solid #ddd;margin: 0;">
             <div class="row" style="padding:0;font-size: 18px;background: #fff;margin: 0">
                 <div class="col-xs-12">
-                    <a ng-class="{btn:true, 'btn-info':true, 'btn-yellow':true, 'btn-block':true}" ng-click="addAddress()"
+                    <a ng-class="{btn:true, 'btn-info':true, 'btn-yellow':true, 'btn-block':true}" ng-click="editAddress()"
                        style="line-height: 34px;margin: 8px auto;color: #fff;font-size: 18px;"><i class="fa  fa-fw"></i>保存</a>
                 </div>
             </div>

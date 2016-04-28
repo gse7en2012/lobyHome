@@ -23,6 +23,11 @@ angular.module('LobyHome')
                 };
                 $scope.imgList = eval(details.images);
 
+                $scope.$emit('acts',{
+                    actName:details.name,
+                    online_time:details.online_time
+                });
+
                 updateWxTitle(details.name);
             });
 

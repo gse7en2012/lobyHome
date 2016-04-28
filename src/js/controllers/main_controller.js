@@ -94,7 +94,7 @@ angular.module('LobyHome.controllers.Main', [])
                         $rootScope.lat = latitude;
                         $rootScope.lon = longitude;
                         console.log('getLocationSuccess!');
-                        $scope.$broadcast('glc',{msg:'OK'});
+                        $scope.$broadcast('glc', {msg: 'OK'});
                     }
                 });
 
@@ -102,10 +102,10 @@ angular.module('LobyHome.controllers.Main', [])
         });
 
 
-        $scope.showLocation = function (lat,lon,name, desc) {
+        $scope.showLocation = function (lat, lon, name, desc) {
             wx.openLocation({
-                latitude:lat|| $scope.lat, // 纬度，浮点数，范围为90 ~ -90
-                longitude:lon|| $scope.lon, // 经度，浮点数，范围为180 ~ -180。
+                latitude: lat || $scope.lat, // 纬度，浮点数，范围为90 ~ -90
+                longitude: lon || $scope.lon, // 经度，浮点数，范围为180 ~ -180。
                 name: name, // 位置名
                 address: desc, // 地址详情说明
                 scale: 12, // 地图缩放级别,整形值,范围从1~28。默认为最大
@@ -149,6 +149,13 @@ angular.module('LobyHome.controllers.Main', [])
         $scope.returnHome = function () {
             location.href = '#/'
         };
+
+
+        $scope.$on('acts', function (evt, data) {
+            console.log('acts got');
+            $rootScope.actInfo = data;
+            console.log($rootScope.actInfo);
+        })
 
 
     });

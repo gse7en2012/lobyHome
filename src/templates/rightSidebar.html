@@ -5,8 +5,8 @@
         <img src="images/avatar.jpg" ng-hide="userInfo.headImgUrl">
         <img ng-src="{{userInfo.headImgUrl}}" ng-show="userInfo.headImgUrl" />
     </div>
-    <h1 class="name" ng-if="userInfo.userid">{{userInfo.nickname}}</h1>
-    <h1 class="name" ng-if="!userInfo.userid">请登录</h1>
+    <h1 class="name" ng-if="userInfo.userId">{{userInfo.nickname}}</h1>
+    <h1 class="name" ng-if="!userInfo.userId">请登录</h1>
     <div class="">
         <div class="list-group" ui-turn-off='uiSidebarRight'>
             <a class="list-group-item lobby-sidebar-item" ng-click="logout()">退出登录<i

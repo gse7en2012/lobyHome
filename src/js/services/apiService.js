@@ -35,10 +35,10 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
 
 
     //社区列表
-    this.getCommunityList = function () {
+    this.getCommunityList    = function (lon, lat) {
         return httpRequest({
             method: 'GET',
-            url: remoteAddress + 'community'
+            url: remoteAddress + 'nearest_community?page=1&size=10&latitude=' + lat + '&longitude=' + lon
         }).then(transferData)
     };
     this.getCommunityDetails = function (id) {
@@ -60,23 +60,91 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             //        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
             //    return str.join("&");
             //},
-            data:data
+            data: data
         })
     };
 
     //mall homepage
-    this.mallIndex=function(){
+    this.mallIndex = function () {
         return httpRequest({
-            method:'GET',
-            url:'/api/homepage'
+            method: 'GET',
+            url: '/api/homepage'
         })
     };
 
-    this.getProductionDetails=function(id){
+    this.getProductionDetails = function (id) {
         return httpRequest({
             method: 'GET',
             url: remoteAddress + 'products?id=' + id
         }).then(transferData)
+    };
+
+    this.getShopCartList = function (id) {
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'shoppingcart',
+        }).then(transferData)
+    };
+    this.addToShopCart   = function (productId, buyNum, userId) {
+        return httpRequest({
+            method: 'POST',
+            url: remoteAddress + 'shoppingcart',
+            data: {
+                id: userId,
+                product_id: productId,
+                buy_number: buyNum
+            }
+        })
+    };
+    this.editShopCartNum = function (data) {
+        return httpRequest({
+            method: 'PUT',
+            url: remoteAddress + 'shoppingcart',
+            data: data
+        })
+    };
+    this.generateMallOrder=function(data){
+        return httpRequest({
+            method: 'POST',
+            url: remoteAddress + 'order',
+            data: data
+        })
+    };
+
+
+    this.getAddressList = function (id) {
+        var url = (remoteAddress + 'address');
+        if (id) {
+            url = (remoteAddress + 'address?id=' + id);
+        }
+        return httpRequest({
+            method: 'GET',
+            url: url,
+        }).then(transferData)
+    };
+
+    this.addAddress = function (data) {
+        return httpRequest({
+            method: 'POST',
+            url: remoteAddress + 'address',
+            data: data
+        })
+    };
+
+    this.editAddress = function (data) {
+        return httpRequest({
+            method: 'PUT',
+            url: remoteAddress + 'address',
+            data: data
+        })
+    };
+
+    this.deleteAddress = function (data) {
+        return httpRequest({
+            method: 'DELETE',
+            url: remoteAddress + 'address',
+            data: data
+        })
     };
 
 

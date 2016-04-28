@@ -3,22 +3,28 @@ angular.module('LobyHome')
     .controller('communityController', function ($scope, $timeout, $rootScope, updateWxTitle, apiService) {
         updateWxTitle('乐比社区');
 
-        apiService.getCommunityList().then(function (data) {
-            $scope.commList = data;
-            if ($rootScope.lat && $rootScope.lon) {
-                $scope.commList.forEach(function (item) {
-                    item.distance = '距离您' + Math.floor(getFlatternDistance(item.latitude, item.longitude, $rootScope.lat, $rootScope.lon) / 1000) + 'KM';
-                });
-            }
-        });
+        if($rootScope.lat && $rootScope.lon) {
+            apiService.getCommunityList($rootScope.lon,$rootScope.lat).then(function (data) {
+                $scope.commList = data;
+                //if ($rootScope.lat && $rootScope.lon) {
+                //    $scope.commList.forEach(function (item) {
+                //        item.distance = '距离您' + Math.floor(getFlatternDistance(item.latitude, item.longitude, $rootScope.lat, $rootScope.lon) / 1000) + 'KM';
+                //    });
+                //}
+            });
+        }
 
         $scope.$on('glc', function (evt, data) {
             console.log(evt,data);
-            if ($rootScope.lat && $rootScope.lon) {
-                $scope.commList.forEach(function (item) {
-                    item.distance = '距离您' + Math.floor(getFlatternDistance(item.latitude, item.longitude, $rootScope.lat, $rootScope.lon) / 1000) + 'KM';
+            if($rootScope.lat && $rootScope.lon) {
+                apiService.getCommunityList($rootScope.lon,$rootScope.lat).then(function (data) {
+                    $scope.commList = data;
+                    //if ($rootScope.lat && $rootScope.lon) {
+                    //    $scope.commList.forEach(function (item) {
+                    //        item.distance = '距离您' + Math.floor(getFlatternDistance(item.latitude, item.longitude, $rootScope.lat, $rootScope.lon) / 1000) + 'KM';
+                    //    });
+                    //}
                 });
-                $scope.$apply();
             }
         });
 

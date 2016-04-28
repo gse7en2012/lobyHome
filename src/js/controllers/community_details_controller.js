@@ -4,7 +4,7 @@ angular.module('LobyHome')
 
 
         apiService.getCommunityDetails($routeParams.cid).then(function (data) {
-            var commData = data[0];
+            var commData = data.detail;
             updateWxTitle(commData.name);
 
             $scope.address = commData.address;
@@ -17,52 +17,25 @@ angular.module('LobyHome')
             $scope.longitude                = commData.longitude;
             $scope.imgList                  = eval(commData.images);
 
+            $scope.actList=data.list;
+
+            $scope.mItemBoxUlStyle= {
+                "width":(baseWidth + 12) * $scope.actList.length+'px',
+                "height":baseWidth*0.6+'px'
+            };
+
+
         });
 
 
-        $scope.imgList = [
-            'images/t1.jpg',
-            'images/t2.jpg',
-            'images/c2.jpg',
-            'images/c1.jpg'
-        ];
 
-        $scope.actList = [
-            {
-                img: 'images/t1.jpg',
-                name: '国学进社20px',
-                time: '04月03日16px',
-                id: 1,
-                link: '#/community/details/'
-            },
-            {
-                img: 'images/t2.jpg',
-                name: '贫困山区支教',
-                time: '05月03日',
-                id: 1,
-                link: '#/community/details/'
-            },
-            {
-                img: 'images/c3.jpg',
-                name: '开心植树节',
-                time: '06月03日',
-                id: 1,
-                link: '#/community/details/'
-            },
-            {
-                img: 'images/c1.jpg',
-                name: '爱心敬老院',
-                time: '07月03日',
-                id: 1,
-                link: '#/community/details'
-            }
-        ];
         updateWxTitle('社区详情');
 
         var baseWidth = screen.width * 0.75;
+        baseWidth=280;
 
         $scope.cItemBoxUlStyle = {
-            "width": (baseWidth + 20) * $scope.actList.length + 'px',
+            "width": (baseWidth + 12) * 5 + 'px',
             "height": baseWidth / 2 + 40 + 'px'
         };
 

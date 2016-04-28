@@ -11,9 +11,7 @@
             <div class="lobby-activity-carousel" style="height:0;padding-bottom: 50%;overflow: hidden">
 
                 <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide
-                    rn-carousel-controls-allow-loop rn-carousel-easing
-                    rn-carousel-buffered
-                    style="padding-bottom: 50%">
+                    rn-carousel-controls-allow-loop rn-carousel-easing rn-carousel-buffered style="padding-bottom: 50%">
                     <li ng-repeat="img in imgList">
                         <img ng-src="{{img}}"/>
                     </li>
@@ -24,48 +22,57 @@
             <div class="lobby-mall-details-box">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div  style="font-size: 22px;margin-bottom: 0;font-weight: bold;">教育机器人 蓝牙家庭版</div>
+                        <div style="font-size: 22px;margin-bottom: 0;font-weight: bold;">{{name}}</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6 number-box">
-                        <div style="font-size: 18px;margin-bottom: 12px;">
-                            <span style="position: relative;top:3px;">数量</span><i class="fa fa-minus-square-o fa-fw" ng-click="minusGoodNum()"></i><input type="tel" class="form-control input-sm" style="    width: 26%;
-    display: inline-block;
-    text-align: center;
-    height: 24px;
-    line-height: 24px;
-    padding: 0;" ng-model="buyNum"><i class="fa fa-plus-square-o fa-fw" ng-click="addGoodNum()"></i>
+                        <div style="font-size: 14px;margin-bottom: 12px;">
+                            <div>价格:{{price.toFixed(2)}}元</div>
+                            <span style="position: relative;top:3px;">数量</span>
+                            <i class="fa fa-minus-square-o fa-fw" ng-click="minusGoodNum()"></i>
+                            <input type="tel" class="form-control input-sm" style="width: 26%;display: inline-block;text-align: center;height: 24px;line-height: 24px;padding: 0;" ng-model="buyNum">
+                            <i class="fa fa-plus-square-o fa-fw" ng-click="addGoodNum()"></i>
                         </div>
-                        <a class="btn btn-block btn-yellow-f" ng-click="testWechatPay()"><i class="fa fa-plus fa-fw"></i>放进购物车</a>
+                        <a class="btn btn-block btn-yellow-f" ng-click="addToShopCarts()" style="position: relative;z-index: 999;">
+                            <i class="fa fa-plus fa-fw"></i>放进购物车
+                        </a>
                     </div>
                     <div class="col-xs-6">
-                        <div>预计发货时间:<br>2016年5月1日</div>
-                        <a class="btn btn-block btn-yellow" ng-href="#/mall/shopcart"><i class="fa fa-shopping-bag fa-fw"></i>立即购买 </a>
+                        <div>预计发货时间:<br>{{on_sale_time}}</div>
+                        <a class="btn btn-block btn-yellow" ng-href="#/mall/shopcart"><i
+                                class="fa fa-shopping-bag fa-fw"></i>立即购买 </a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <h3>产品描述</h3>
-                        <p>真是一段彩票描述啊啊啊啊哈哈哈哈大领导及分类考试了空间分离机真是一段彩票描述啊啊啊啊哈哈哈哈大领导及分类考试了空间分离机真是一段彩票描述啊啊啊啊哈哈哈哈大领导及分类考试了空间分离机真是一段彩票描述啊啊啊啊哈哈哈哈大领导及分类考试了空间分离机真是一段彩票描述啊啊啊啊哈哈哈哈大领导及分类考试了空间分离机</p>
-                        <h3>产品参数(产品详情)</h3>
-                        <table>
-                            <tr>
-                                <td>产地</td><td>非洲大陆马达加斯加</td>
-                            </tr>
-                            <tr>
-                                <td>产地</td><td>非洲大陆马达加斯加</td>
-                            </tr>
-                            <tr>
-                                <td>产地</td><td>非洲大陆马达加斯加</td>
-                            </tr>
-                            <tr>
-                                <td>产地</td><td>非洲大陆马达加斯加</td>
-                            </tr>
-                            <tr>
-                                <td>产地</td><td>非洲大陆马达加斯加</td>
-                            </tr>
-                        </table>
+
+                        <p>{{description}}</p>
+
+                        <!--<h3>产品参数(产品详情)</h3>-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td>产地</td>-->
+                                <!--<td>非洲大陆马达加斯加</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>产地</td>-->
+                                <!--<td>非洲大陆马达加斯加</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>产地</td>-->
+                                <!--<td>非洲大陆马达加斯加</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>产地</td>-->
+                                <!--<td>非洲大陆马达加斯加</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>产地</td>-->
+                                <!--<td>非洲大陆马达加斯加</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
                     </div>
                 </div>
             </div>

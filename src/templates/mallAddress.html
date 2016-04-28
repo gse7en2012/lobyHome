@@ -6,7 +6,7 @@
     left: auto;">
     <i class="fa fa-user lobby-menu"></i>
 </div>
-<div class="lobby-mall-address" ng-controller="mallOrderSureController">
+<div class="lobby-mall-address" ng-controller="mallAddressController">
 
 
     <div class="lobby-mall-details-header" style="z-index: 66;
@@ -15,39 +15,18 @@
 
     <div class="scrollable address-view">
         <div class="scrollable-content" style="padding-bottom: 50px;">
-            <div class="row">
+            <div class="row" ng-repeat="address in addressList">
                 <div class="col-xs-12">
-                    <p><span class="name">张三</span><span class="phone">134****6875</span></p>
+                    <p><span class="name">{{address.receiver}}</span><span class="phone">{{address.receiver_phone_number}}</span></p>
 
-                    <p class="address-full">广州市天河区珠江新城太阳新天地广场1002封5002室</p>
+                    <p class="address-full">{{address.receiver_province}}{{address.receiver_detail_address}}</p>
 
                     <div class="bottom">
-                        <span class="pull-left"><i class="fa fa-circle-o"></i>设为默认</span>
-                        <span class="pull-right"><i class="fa fa-edit"></i>编辑<i class="fa fa-trash" style="margin-left: 10px;"></i>删除 </span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <p><span class="name">张三</span><span class="phone">134****6875</span></p>
-
-                    <p class="address-full">广州市天河区珠江新城太阳新天地广场1002封5002室</p>
-
-                    <div class="bottom">
-                        <span class="pull-left"><i class="fa fa-circle-o"></i>设为默认</span>
-                        <span class="pull-right"><i class="fa fa-edit"></i>编辑<i class="fa fa-trash" style="margin-left: 10px;"></i>删除 </span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <p><span class="name">张三</span><span class="phone">134****6875</span></p>
-
-                    <p class="address-full">广州市天河区珠江新城太阳新天地广场1002封5002室</p>
-
-                    <div class="bottom">
-                        <span class="pull-left"><i class="fa fa-dot-circle-o"></i>设为默认</span>
-                        <span class="pull-right"><i class="fa fa-edit"></i>编辑<i class="fa fa-trash" style="margin-left: 10px;"></i>删除 </span>
+                        <span class="pull-left" style="color:#222;"  ng-click="changeDefault(address.id)"><i ng-class="{fa:true,'fa-circle-o':!address.is_default,'fa-dot-circle-o':address.is_default}"></i>设为默认</span>
+                        <span class="pull-right">
+                            <a href="/#/mall/address/edit/{{address.id}}" style="color: #777;"><i class="fa fa-edit"></i>编辑</a>
+                            <b ng-click="deleteAddress(address.id)"><i class="fa fa-trash" style="margin-left: 10px;"></i>删除 </b>
+                        </span>
                     </div>
                 </div>
             </div>

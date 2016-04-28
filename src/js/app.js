@@ -1,4 +1,4 @@
-var lobyApp=angular.module('LobyHome', [
+var lobyApp = angular.module('LobyHome', [
     'ngRoute',
     'ngCookies',
     'mobile-angular-ui',
@@ -15,6 +15,7 @@ var lobyApp=angular.module('LobyHome', [
         .when('/mall/shopcart', {templateUrl: 'mallShopCart.html', reloadOnSearch: false})
         .when('/mall/address', {templateUrl: 'mallAddress.html', reloadOnSearch: false})
         .when('/mall/address/add', {templateUrl: 'mallAddressAdd.html', reloadOnSearch: false})
+        .when('/mall/address/edit/:aid', {templateUrl: 'mallAddressEdit.html', reloadOnSearch: false})
         .when('/mall/points', {templateUrl: 'mallPoints.html', reloadOnSearch: false})
         .when('/mall/ordersure', {templateUrl: 'mallOrderSure.html', reloadOnSearch: false})
         .when('/mall/order/list', {templateUrl: 'mallOrderList.html', reloadOnSearch: false})
@@ -31,15 +32,15 @@ var lobyApp=angular.module('LobyHome', [
     //angularBMap.setDefaultPosition(121.49576, 31.240998);//设置默认中心点
 }]);
 
-lobyApp.factory('updateWxTitle',function(){
+lobyApp.factory('updateWxTitle', function () {
     function update_wx_title(title) {
-        var body = document.getElementsByTagName('body')[0];
+        var body       = document.getElementsByTagName('body')[0];
         document.title = title;
-        var iframe = document.createElement("iframe");
+        var iframe     = document.createElement("iframe");
         iframe.setAttribute("src", "images/t1.jpg");
 
-        iframe.addEventListener('load', function() {
-            setTimeout(function() {
+        iframe.addEventListener('load', function () {
+            setTimeout(function () {
                 //iframe.removeEventListener('load');
                 document.body.removeChild(iframe);
             }, 0);
@@ -50,9 +51,9 @@ lobyApp.factory('updateWxTitle',function(){
 });
 lobyApp.directive('imgLoadAutoSize', function () {
     return {
-        link: function(scope, element, attrs) {
-            element.bind("load" , function(e){
-                if(this.naturalHeight > this.naturalWidth){
+        link: function (scope, element, attrs) {
+            element.bind("load", function (e) {
+                if (this.naturalHeight > this.naturalWidth) {
                     this.className = "vertical";
                 }
             });

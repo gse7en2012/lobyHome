@@ -13,7 +13,7 @@
             <ul class="lobby-shop-cart-list">
                 <li ng-repeat="good in shopCartList">
                     <div ng-class="{'c-box':true,'edit-status':isEdit}">
-                        <i ng-class="{fa:true,'fa-fw':true, 'fa-square-o':!good.choose,'fa-check-square-o':good.choose}" ng-click="good.choose=!good.choose"></i>
+                        <i ng-class="{fa:true,'fa-fw':true, 'fa-square-o':!good.choose,'fa-check-square-o':good.choose}" ng-click="deleteGood(good)"></i>
                     </div>
                     <div ng-class="{'i-box':true,'edit-status':isEdit}">
                         <img ng-src={{good.img}}>
@@ -23,7 +23,7 @@
                         <div class="ctx">
                             <p class="name">{{good.name}}</p>
                             <p class="color">{{good.color}}</p>
-                            <p class="origin"><span>{{good.origin}}</span></p>
+                            <p class="origin"><span ng-if="good.origin">{{good.origin}}</span></p>
 
                             <p class="price">
                                 <i class="fa fa-cny"></i>{{good.price}}

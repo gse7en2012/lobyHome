@@ -10,8 +10,8 @@
         <div class="scrollable-content">
             <div class="lobby-activity-carousel" style="height:0;padding-bottom: 50%;overflow: hidden">
 
-                <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide
-                    rn-carousel-controls-allow-loop rn-carousel-easing rn-carousel-buffered style="padding-bottom: 50%">
+                <ul rn-carousel class="image" rn-carousel-index="imgIndex"
+                    rn-carousel-controls-allow-loop style="padding-bottom: 50%">
                     <li ng-repeat="img in imgList">
                         <img ng-src="{{img}}"/>
                     </li>
@@ -27,11 +27,11 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6 number-box">
-                        <div style="font-size: 14px;margin-bottom: 12px;">
+                        <div >
                             <div>价格:{{price.toFixed(2)}}元</div>
-                            <span style="position: relative;top:3px;">数量</span>
+                            <span style="position: relative;top:2px;">数量</span>
                             <i class="fa fa-minus-square-o fa-fw" ng-click="minusGoodNum()"></i>
-                            <input type="tel" class="form-control input-sm" style="width: 26%;display: inline-block;text-align: center;height: 24px;line-height: 24px;padding: 0;" ng-model="buyNum">
+                            <input type="tel" class="form-control input-sm" style="width: 26%;display: inline-block;text-align: center;height: 22px;line-height: 22px;padding: 0;font-size: 14px;" ng-model="buyNum">
                             <i class="fa fa-plus-square-o fa-fw" ng-click="addGoodNum()"></i>
                         </div>
                         <a class="btn btn-block btn-yellow-f" ng-click="addToShopCarts()" style="position: relative;z-index: 999;">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-xs-6">
                         <div>预计发货时间:<br>{{on_sale_time}}</div>
-                        <a class="btn btn-block btn-yellow" ng-href="#/mall/shopcart"><i
+                        <a class="btn btn-block btn-yellow" ng-click="buyNow()" style="margin-top: 13px;"><i
                                 class="fa fa-shopping-bag fa-fw"></i>立即购买 </a>
                     </div>
                 </div>

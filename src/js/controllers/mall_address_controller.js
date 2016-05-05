@@ -1,8 +1,8 @@
 angular.module('LobyHome')
 
-    .controller('mallAddressController', function ($scope, $timeout, $rootScope, apiService, updateWxTitle) {
+    .controller('mallAddressController', function ($scope, $timeout, $rootScope, $routeParams, apiService, updateWxTitle) {
         updateWxTitle('地址管理');
-
+        var from = $routeParams.from;
         $scope.addressList = [];
 
         apiService.getAddressList().then(function (data) {
@@ -13,6 +13,22 @@ angular.module('LobyHome')
         });
 
 
+        $scope.addressBack = function () {
+
+            if (from == 'order') {
+                location.href = '#/mall/ordersure'
+            } else {
+                history.back()
+            }
+        };
+
+        $scope.chooseOrderAddress = function () {
+            if(from=='order'){
+                location.href = '#/mall/ordersure'
+            }
+        };
+
+
         $scope.changeDefault = function (id) {
             $scope.addressList.forEach(function (item) {
                 if (item.id != id) {
@@ -21,7 +37,7 @@ angular.module('LobyHome')
                     item.is_default = 1;
                 }
             });
-            apiService.editAddress({
+            apiService.editDefaultAddress({
                 id: id,
                 is_default: 1
             })

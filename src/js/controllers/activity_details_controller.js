@@ -33,6 +33,10 @@ angular.module('LobyHome')
 
 
             $scope.joinActivity = function (actId) {
+                if($scope.userInfo.is_registered!=1){
+                    alert('请先通过手机号码绑定用户!');
+                    return location.href='#/reg?red='+encodeURIComponent(location.href);
+                }
                 apiService.joinActivity({
                     activity_id: actId,
                     user_id: $scope.userInfo.userId,

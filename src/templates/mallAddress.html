@@ -1,4 +1,4 @@
-<div ng-click="back()" class="btn lobby-icon-btn">
+<div ng-click="addressBack()" class="btn lobby-icon-btn">
     <i class="fa fa-arrow-left lobby-menu"></i>
 </div>
 <div ui-toggle="uiSidebarRight" class="btn lobby-icon-btn" style="top: 6px;
@@ -15,7 +15,7 @@
 
     <div class="scrollable address-view">
         <div class="scrollable-content" style="padding-bottom: 50px;">
-            <div class="row" ng-repeat="address in addressList">
+            <div class="row" ng-repeat="address in addressList" ng-click="chooseOrderAddress(address.id)">
                 <div class="col-xs-12">
                     <p><span class="name">{{address.receiver}}</span><span class="phone">{{address.receiver_phone_number}}</span></p>
 
@@ -25,7 +25,7 @@
                         <span class="pull-left" style="color:#222;"  ng-click="changeDefault(address.id)"><i ng-class="{fa:true,'fa-circle-o':!address.is_default,'fa-dot-circle-o':address.is_default}"></i>设为默认</span>
                         <span class="pull-right">
                             <a href="/#/mall/address/edit/{{address.id}}" style="color: #777;"><i class="fa fa-edit"></i>编辑</a>
-                            <b ng-click="deleteAddress(address.id)"><i class="fa fa-trash" style="margin-left: 10px;"></i>删除 </b>
+                            <b ng-click="deleteAddress(address.id)" style="font-weight: normal"><i class="fa fa-trash" style="margin-left: 10px;"></i>删除 </b>
                         </span>
                     </div>
                 </div>

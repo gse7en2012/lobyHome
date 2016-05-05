@@ -1,6 +1,8 @@
 var lobyApp = angular.module('LobyHome', [
     'ngRoute',
     'ngCookies',
+    'ngAnimate',
+    'toastr',
     'mobile-angular-ui',
     'LobyHome.controllers.Main',
     'angular-carousel',
@@ -30,7 +32,18 @@ var lobyApp = angular.module('LobyHome', [
         .when('/community/map', {templateUrl: 'Map.html', reloadOnSearch: false});
 }).config(['angularBMapProvider', function (angularBMap) {
     //angularBMap.setDefaultPosition(121.49576, 31.240998);//设置默认中心点
-}]);
+}]).config(function (toastrConfig) {
+    //http://foxandxss.github.io/angular-toastr/
+    angular.extend(toastrConfig, {
+        newestOnTop: true,
+        positionClass: 'toast-top-center',
+        preventDuplicates: true,
+        progressBar: true,
+        timeOut: 2500,
+        preventOpenDuplicates: false,
+        target: 'body'
+    });
+});
 
 lobyApp.factory('updateWxTitle', function () {
     function update_wx_title(title) {

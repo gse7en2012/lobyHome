@@ -16,7 +16,8 @@ angular.module('LobyHome')
                     origin: '',
                     choose: true,
                     color: '',
-                    shop_cart_id: item.id
+                    shop_cart_id: item.id,
+                    product_id:item.product_info.id
                 })
             })
         });
@@ -45,6 +46,17 @@ angular.module('LobyHome')
                     buy_num:$scope.editDataObj[key]
                 })
             });
+        }
+
+        function generateOrderList(){
+            var r=[];
+            $scope.shopCartList.forEach(function(item){
+                r.push({
+                    product_id:item.product_id,
+                    buy_number:item.num
+                })
+            });
+            return r;
         }
 
         //存放修改过的订单数组
@@ -77,6 +89,7 @@ angular.module('LobyHome')
                 transferEditData();
                 apiService.editShopCartNum($scope.editData).then(function(){
                     $scope.editData=[];
+                    $scope.editDataObj={};
                 });
             }
         };
@@ -86,6 +99,11 @@ angular.module('LobyHome')
             good.choose=!good.choose;
             if(!good.choose){
                 good.num=0;
+
+                apiService.deleteShopCartGood({
+                    shoppingcart_id:good.shop_cart_id
+                });
+
                 editItem(good);
             }
         };
@@ -102,7 +120,15 @@ angular.module('LobyHome')
 
         $scope.goToPay = function () {
             if ($scope.isEdit) return;
-            location.href = "#/mall/ordersure";
+
+            var orderList=generateOrderList();
+            apiService.generateMallOrder(orderList).then(function(r){
+                $rootScope.orderDetails=r;
+                location.href = "#/mall/ordersure";
+            }).catch(function(e){
+                alert(e)
+            });
+            //location.href = "#/mall/ordersure";
         };
 
 

@@ -4,7 +4,9 @@
 'use strict';
 
 angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http, $q) {
-    var remoteAddress = 'http://lobicom.com/api/';
+    var remoteAddress = 'http://test.lobicom.com/api/';
+
+    if(location.host.indexOf('test')==-1) remoteAddress='http://lobicom.com/api/';
 
     function httpRequest(opts) {
         var d = $q.defer();
@@ -16,7 +18,7 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         if (data.errCode == 200) {
             return data.result;
         }
-        return $q.reject('出错了');
+        return $q.reject(data.result);
     }
 
     //活动列表
@@ -79,13 +81,13 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData)
     };
 
-    this.getShopCartList = function (id) {
+    this.getShopCartList   = function (id) {
         return httpRequest({
             method: 'GET',
             url: remoteAddress + 'shoppingcart',
         }).then(transferData)
     };
-    this.addToShopCart   = function (productId, buyNum, userId) {
+    this.addToShopCart     = function (productId, buyNum, userId) {
         return httpRequest({
             method: 'POST',
             url: remoteAddress + 'shoppingcart',
@@ -96,19 +98,45 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             }
         })
     };
-    this.editShopCartNum = function (data) {
+    this.editShopCartNum   = function (data) {
         return httpRequest({
             method: 'PUT',
             url: remoteAddress + 'shoppingcart',
             data: data
         })
     };
-    this.generateMallOrder=function(data){
+    this.deleteShopCartGood=function(data){
+        return httpRequest({
+            method: 'DELETE',
+            url: remoteAddress + 'shoppingcart',
+            data: data
+        })
+    };
+
+
+    this.getMallOrder = function (data) {
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'order',
+            data: data
+        }).then(transferData)
+    };
+
+
+    this.generateMallOrder = function (data) {
         return httpRequest({
             method: 'POST',
             url: remoteAddress + 'order',
             data: data
-        })
+        }).then(transferData)
+    };
+
+    this.generatePayOrder = function (data) {
+        return httpRequest({
+            method: 'POST',
+            url: remoteAddress + 'pay',
+            data: data
+        }).then(transferData)
     };
 
 
@@ -138,6 +166,13 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             data: data
         })
     };
+    this.editDefaultAddress=function(data){
+        return httpRequest({
+            method: 'PUT',
+            url: remoteAddress + 'setdefault_address',
+            data: data
+        })
+    };
 
     this.deleteAddress = function (data) {
         return httpRequest({
@@ -145,6 +180,22 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             url: remoteAddress + 'address',
             data: data
         })
+    };
+
+
+    //reg
+    this.getRegCheckCode = function (phone) {
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'check_code?phone_number=' + phone
+        })
+    };
+    this.postReg = function (data) {
+        return httpRequest({
+            method: 'POST',
+            url: remoteAddress + 'register',
+            data:data
+        }).then(transferData)
     };
 
 

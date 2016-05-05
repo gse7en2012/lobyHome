@@ -1,10 +1,16 @@
 angular.module('LobyHome.controllers.Main', [])
 
     .controller('MainController', function ($scope, $timeout, $rootScope, $http, $cookies, apiService) {
-        var appId = 'wxc9aa23b94ca6c9bb';
-        var redirectUri = encodeURIComponent('http://lobicom.com/wechat/ask_userinfo');
+
+        var signUrl = (location.protocol + "//" + location.host + location.pathname + location.search);
+        var appId   = 'wxc9aa23b94ca6c9bb';
+        var appIdProduct = 'wxe50a5e6792ceecc2';
+        var redirectUri = encodeURIComponent(location.protocol + "//" + location.host + '/wechat/ask_userinfo');
         var ENVDEV = false;
         var lobiUid = $cookies.get('lobi_userid');
+
+
+        if (redirectUri.indexOf('test') == -1) appId = appIdProduct;
 
 
         if (!ENVDEV && !lobiUid) {
@@ -15,7 +21,6 @@ angular.module('LobyHome.controllers.Main', [])
             } else {
                 state = hashList[1].replace(/(\?|\/|&|=)/, ' ').split(' ')[0];
             }
-            console.log(state);
             location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize' +
                 '?appid=' + appId + '&' +
                 'redirect_uri=' + redirectUri + '&' +
@@ -28,7 +33,8 @@ angular.module('LobyHome.controllers.Main', [])
         $scope.userInfo = {
             nickname: $cookies.get('lobi_nickname'),
             headImgUrl: $cookies.get('lobi_headimgurl'),
-            userId: lobiUid
+            userId: lobiUid,
+            is_registered:$cookies.get('is_registered')
         };
 
         $rootScope.$on('$routeChangeStart', function () {
@@ -38,14 +44,14 @@ angular.module('LobyHome.controllers.Main', [])
 
         $rootScope.$on('$routeChangeSuccess', function () {
             //     alert(location.href);
-            $timeout(function () {
-                $rootScope.loading = false;
-            }, 300);
+            // $timeout(function () {
+            $rootScope.loading = false;
+            //  }, 300);
             //$rootScope.loading = false;
         });
 
-        var signUrl = (location.protocol + "//" + location.host + location.pathname + location.search);
-        $http.get('http://lobicom.com/wechat/create_wx_config?url=' + encodeURI(signUrl)).success(function (data) {
+
+        $http.get('/wechat/create_wx_config?url=' + encodeURI(signUrl)).success(function (data) {
             var _wxSDKConfig = {
                 auth: {
                     debug: false,

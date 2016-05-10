@@ -10,9 +10,7 @@
                 </div>
                 <!--<h1>LOBI MALL</h1>-->
 
-                <div class="lobby-mall-search" style="width: 85%;
-    margin: auto;
-    margin-top: -5px;">
+                <div class="lobby-mall-search" style="width: 85%;margin: auto;margin-top: -5px;">
                     <input type="text" class="form-control" placeholder="商品名称" ng-model="keyword">
                     <span class="fa fa-search"></span>
                 </div>
@@ -32,59 +30,24 @@
                     <ul class="content" ng-show="menuIndex==cate.index" ng-repeat="cate in categories">
                         <li ng-repeat="cc in cate.children">{{cc.name}}</li>
                     </ul>
-                    <!--<ul class="content" ng-show="menuIndex==2">-->
-                        <!--<li>柬埔寨吴哥窟</li>-->
-                        <!--<li>越南芽庄</li>-->
-                        <!--<li>菲律宾马尼拉</li>-->
-                    <!--</ul>-->
-                    <!--<ul class="content" ng-show="menuIndex==3">-->
-                        <!--<li>希腊雅典</li>-->
-                        <!--<li>威尼斯威尼斯</li>-->
-                        <!--<li>北极圈斯德哥尔摩</li>-->
-                    <!--</ul>-->
                 </div>
             </div>
 
             <div class="lobby-activity-carousel"
                  style="height:0;padding-bottom: 50%;overflow: hidden;margin-top: 4px;: ">
-                <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide
-                    rn-carousel-controls-allow-loop rn-carousel-easing
-                    rn-carousel-buffered
-                    style="padding-bottom: 50%">
+                <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-controls-allow-loop style="padding-bottom: 50%">
                     <li ng-repeat="img in imgList">
                         <a href="{{img.banner_link}}"><img ng-src="{{img.banner_img}}"/></a>
                     </li>
                 </ul>
-                <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1"
-                     slides="imgList"></div>
+                <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1" slides="imgList"></div>
             </div>
             <div class="lobby-community-box">
-                <div class="c-item">
-                    <h3>创客空间20px</h3>
-
+                <div class="c-item" ng-repeat="(cate,productList) in productObj">
+                    <h3>{{cate}}</h3>
                     <div class="c-item-box">
-
-                        <ul ng-style="mItemBoxUlStyle">
-                            <li ng-repeat="good in goodList" ng-style="mItemBoxLiStyle" class="mall-show-list">
-                                <a ng-href="#/mall/details/{{good.id}}">
-                                    <div class="img-box" ng-style="mImgBoxStyle">
-                                        <img ng-src="{{good.icon_url}}">
-
-                                        <p>{{good.name}}</p>
-                                    </div>
-
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="c-item">
-                    <h3>有机生活</h3>
-
-                    <div class="c-item-box">
-
-                        <ul ng-style="mItemBoxUlStyle">
-                            <li ng-repeat="good in goodList2" ng-style="mItemBoxLiStyle" class="mall-show-list">
+                        <ul ng-style="getMItemBoxUlStyle(productList.len)">
+                            <li ng-repeat="good in productList.list" ng-style="mItemBoxLiStyle" class="mall-show-list">
                                 <a ng-href="#/mall/details/{{good.id}}">
                                     <div class="img-box" ng-style="mImgBoxStyle">
                                         <img ng-src="{{good.icon_url}}">
@@ -95,6 +58,23 @@
                         </ul>
                     </div>
                 </div>
+                <!--<div class="c-item">-->
+                    <!--<h3>有机生活</h3>-->
+
+                    <!--<div class="c-item-box">-->
+
+                        <!--<ul ng-style="mItemBoxUlStyle">-->
+                            <!--<li ng-repeat="good in goodList2" ng-style="mItemBoxLiStyle" class="mall-show-list">-->
+                                <!--<a ng-href="#/mall/details/{{good.id}}">-->
+                                    <!--<div class="img-box" ng-style="mImgBoxStyle">-->
+                                        <!--<img ng-src="{{good.icon_url}}">-->
+                                        <!--<p>{{good.name}}</p>-->
+                                    <!--</div>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </div>

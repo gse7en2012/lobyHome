@@ -8,9 +8,24 @@ angular.module('LobyHome')
 
         $rootScope.red = decodeURIComponent($routeParams.red);
 
+
+        function checkPhoneIsReg(phone) {
+            return apiService.checkReg(phone);
+        }
+
+
         $scope.stepNext = function () {
             if (!$scope.name || !$scope.phone || !$scope.isRead) return;
-            $scope.stepNow = 2;
+            return checkPhoneIsReg($scope.phone).then(function (r) {
+                if (!r) {
+                    $scope.stepNow = 2;
+                } else {
+                    toastr.error('该手机已经注册!')
+                }
+            }).catch(function(e){
+                toastr.error(e)
+            })
+
         };
 
         $scope.sendCode = function () {

@@ -1,52 +1,74 @@
 angular.module('LobyHome')
 
-.controller('mallController', function($scope,$timeout,$rootScope,updateWxTitle,apiService){
-    updateWxTitle('乐比城');
+    .controller('mallController', function ($scope, $timeout, $rootScope, updateWxTitle, apiService) {
+        updateWxTitle('乐比城');
 
-    var baseWidth=screen.width*0.75;
+        var baseWidth = screen.width * 0.75;
 
-    baseWidth=280;
+        baseWidth = 280;
 
-    apiService.mallIndex().then(function(data){
-        $scope.imgList=data.result.banner;
-        $scope.goodList=data.result.product;
-        $scope.goodList2=data.result.product;
-        $scope.categories=data.result.categories;
-
-        console.log($scope.categories);
-
-        $scope.mItemBoxUlStyle= {
-            "width":(baseWidth + 12) * $scope.goodList.length+'px',
-            "height":baseWidth*0.6+'px'
+        $scope.getMItemBoxUlStyle = function (len) {
+            return {
+                "width": (baseWidth + 15) * len + 15 + 'px',
+                "height": baseWidth * 0.6 + 'px'
+            };
         };
+
+
+        apiService.mallIndex().then(function (data) {
+            $scope.imgList    = data.banner;
+            $scope.goodList = data.product;
+            $scope.goodList2 = data.product;
+            $scope.categories = data.categories;
+
+            // var productCateList=[];
+            $scope.productObj = {};
+            data.product.forEach(function (prod) {
+                if (!$scope.productObj[prod.level1_class]) {
+                    $scope.productObj[prod.level1_class] = {
+                        len: 0,
+                        list: []
+                    };
+                }
+                $scope.productObj[prod.level1_class].list.push(prod);
+                $scope.productObj[prod.level1_class].len = $scope.productObj[prod.level1_class].len + 1;
+            });
+
+
+            console.log($scope.productObj);
+
+            //$scope.mItemBoxUlStyle = {
+            //    "width": (baseWidth + 12) * $scope.goodList.length + 'px',
+            //    "height": baseWidth * 0.6 + 'px'
+            //};
+        });
+
+        $scope.changeMenuIndex = function (index) {
+            $scope.menuIndex = index
+        };
+
+        $scope.isMenuShow = false;
+        $scope.menuIndex  = 1;
+
+        $scope.mItemBoxUlStyle = {
+            "width": (baseWidth + 20) * 5 + 'px',
+            "height": baseWidth * 0.6 + 'px'
+        };
+
+        $scope.mItemBoxLiStyle = {
+            "width": baseWidth + 'px',
+            "height": baseWidth * 0.6 + 'px'
+        };
+
+        $scope.mImgBoxStyle = {
+            "width": baseWidth + 'px',
+            "height": baseWidth * 0.6 + 'px'
+        };
+
+
+        $scope.gotoMallDetails = function () {
+            location.href = '#/mall/details/2'
+        };
+
+
     });
-
-    $scope.changeMenuIndex=function(index){
-        $scope.menuIndex=index
-    };
-
-    $scope.isMenuShow=false;
-    $scope.menuIndex=1;
-
-    $scope.mItemBoxUlStyle= {
-        "width":(baseWidth + 20) * 5+'px',
-        "height":baseWidth*0.6+'px'
-    };
-
-    $scope.mItemBoxLiStyle={
-        "width":baseWidth+'px',
-        "height":baseWidth*0.6+'px'
-    };
-
-    $scope.mImgBoxStyle={
-        "width":baseWidth+'px',
-        "height":baseWidth*0.6+'px'
-    };
-
-
-    $scope.gotoMallDetails=function(){
-        location.href='#/mall/details/2'
-    };
-
-
-});

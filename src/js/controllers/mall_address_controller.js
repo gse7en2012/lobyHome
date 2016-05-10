@@ -3,6 +3,7 @@ angular.module('LobyHome')
     .controller('mallAddressController', function ($scope, $timeout, $rootScope, $routeParams, apiService, updateWxTitle) {
         updateWxTitle('地址管理');
         var from = $routeParams.from;
+        console.log(from);
         $scope.addressList = [];
 
         apiService.getAddressList().then(function (data) {

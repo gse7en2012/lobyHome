@@ -13,22 +13,24 @@
         <div class="scrollable-content" style="padding-bottom: 50px;">
             <div class="row" ng-repeat="order in orderList">
                 <div class="col-xs-12">
-                    <a class="content" ng-href="#/mall/order/details/222">
+                    <a class="content" ng-href="#/mall/order/details/{{order.order_id}}?order_state={{order.order_state}}">
                         <div class="i-box">
-                            <img ng-src="{{order.img}}" img-load-auto-size>
+                            <img ng-src="{{order.icon_url}}" img-load-auto-size>
                         </div>
                         <div class="desc">
-                            <p class="name">{{order.name}}</p>
-                            <p class="date">2016-04-03 12:43:33</p>
-                            <p class="price"><i class="fa fa-cny"></i>{{order.price}} </p>
+                            <p class="name">{{order.product_name}}</p>
+                            <p class="date">{{order.order_date}}</p>
+                            <p class="price"><i class="fa fa-cny"></i>{{order.total_price}} </p>
                         </div>
-                        <span class="num">X{{order.num}}</span>
+                        <span class="num">X{{order.buy_number}}</span>
                     </a>
 
                     <div class="bottom">
-                        <span class="pull-left">待付款</span>
-                        <span class="pull-right"><a class="btn btn-yellow-f btn-sm">退换货</a><a
-                                class="btn btn-yellow btn-sm">去付款</a> </span>
+                        <span class="pull-left">{{order.state}}</span>
+                        <span class="pull-right">
+                            <a class="btn btn-yellow-f btn-sm" ng-if="data.order_state==4">退换货</a>
+                            <a class="btn btn-yellow btn-sm" ng-if="data.order_state==1">去付款</a>
+                        </span>
                     </div>
                 </div>
             </div>

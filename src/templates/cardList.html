@@ -1,0 +1,33 @@
+<div ng-click="back()" class="btn lobby-icon-btn">
+    <i class="fa fa-arrow-left lobby-menu"></i>
+</div>
+<a class="btn lobby-icon-btn" style="top: 6px;right: 10px;left: auto;display: block" href="#/mall/luckybag/add">
+    <i class="fa fa-plus lobby-menu"></i>
+</a>
+
+<div class="lobby-mall-address" ng-controller="mallCardListController">
+
+
+    <div class="lobby-mall-details-header" style="z-index: 66;
+    position: relative;background: #fff;">我的卡券
+    </div>
+
+    <div class="scrollable card-list-view">
+        <div class="scrollable-content" style="padding-bottom: 50px;">
+
+            <div class="row" ng-repeat="card in cardsList">
+                <div class="col-xs-12">
+                    <div class="card-box">
+                        <div class="content">
+                            <p class="card-id" style="position: absolute;top: 30%;left: 3%;color:#999">{{card.id}}</p>
+                            <p class="desc">ID:{{card.introduce}}</p>
+                            <p class="expires">有效期:{{card.start_time}}至{{card.end_time}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

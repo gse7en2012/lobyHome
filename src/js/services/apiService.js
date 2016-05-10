@@ -71,7 +71,7 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         return httpRequest({
             method: 'GET',
             url: '/api/homepage'
-        })
+        }).then(transferData)
     };
 
     this.getProductionDetails = function (id) {
@@ -117,11 +117,24 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
     this.getMallOrder = function (data) {
         return httpRequest({
             method: 'GET',
-            url: remoteAddress + 'order',
+            url: remoteAddress + 'order?order_state=0',
             data: data
         }).then(transferData)
     };
 
+    this.getUnpayMallOrder = function () {
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'order?order_state=1'
+        }).then(transferData)
+    };
+
+    this.getMallOrderDetails=function(state,id){
+        return httpRequest({
+            method:'GET',
+            url:remoteAddress+'order_detail?order_state='+state+'&id='+id
+        }).then(transferData)
+    };
 
     this.generateMallOrder = function (data) {
         return httpRequest({
@@ -197,7 +210,26 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             data:data
         }).then(transferData)
     };
+    this.checkReg = function (phone) {
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'register?phone='+phone
+        }).then(transferData)
+    };
 
+    this.getLuckyBag=function(){
+        return httpRequest({
+            method:'GET',
+            url:remoteAddress+'fu_package'
+        }).then(transferData)
+    };
+
+    this.getLuckyBagList=function(){
+        return httpRequest({
+            method:'GET',
+            url:remoteAddress+'my_cards'
+        }).then(transferData);
+    };
 
     //this.deleteInfoArt=(artId)=>httpRequest({method: 'POST', url: `/info/art/delete`, data: {art_id:artId}});
 }]);

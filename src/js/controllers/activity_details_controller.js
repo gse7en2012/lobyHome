@@ -1,7 +1,7 @@
 angular.module('LobyHome')
 
     .controller('activityDetailsController',
-        function ($scope, $timeout, $rootScope, $routeParams, apiService, updateWxTitle) {
+        function ($scope, $timeout, $rootScope, $routeParams, apiService, updateWxTitle, toastr) {
             $scope.actId   = $routeParams.act_id;
             $scope.imgList = [];
 
@@ -19,13 +19,14 @@ angular.module('LobyHome')
                     age: details.participant,
                     ctx: details.intruduce,
                     online_time: details.online_time,
-                    price:details.price
+                    price: details.price,
+                    is_need_registered:details.is_need_registered
                 };
                 $scope.imgList = eval(details.images);
 
-                $scope.$emit('acts',{
-                    actName:details.name,
-                    online_time:details.online_time
+                $scope.$emit('acts', {
+                    actName: details.name,
+                    online_time: details.online_time
                 });
 
                 updateWxTitle(details.name);
@@ -33,9 +34,9 @@ angular.module('LobyHome')
 
 
             $scope.joinActivity = function (actId) {
-                if($scope.userInfo.is_registered!=1){
+                if ($scope.actInfo.is_need_registered != 1) {
                     alert('请先通过手机号码绑定用户!');
-                    return location.href='#/reg?red='+encodeURIComponent(location.href);
+                    return location.href = '#/reg?red=' + encodeURIComponent(location.href);
                 }
                 apiService.joinActivity({
                     activity_id: actId,
@@ -44,7 +45,7 @@ angular.module('LobyHome')
                     nonce_str: $scope.nonceStr
                 }).then(function (data) {
                     if (data.errCode != 200) {
-                        return alert(data.result);
+                        return toastr.error(data.result);
                     }
                     if (data.result.is_need_pay == 1) {
                         var wxPayConfig = {

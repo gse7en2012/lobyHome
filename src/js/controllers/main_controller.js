@@ -36,6 +36,7 @@ angular.module('LobyHome.controllers.Main', [])
             userId: lobiUid,
             is_registered:$cookies.get('is_registered')
         };
+        console.log($scope.userInfo);
 
         $rootScope.$on('$routeChangeStart', function () {
             $rootScope.loading = true;

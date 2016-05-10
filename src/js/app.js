@@ -14,6 +14,9 @@ var lobyApp = angular.module('LobyHome', [
         .when('/activity', {templateUrl: 'home.html', reloadOnSearch: false})
         .when('/reg', {templateUrl: 'reg.html', reloadOnSearch: false})
         .when('/mall', {templateUrl: 'mall.html', reloadOnSearch: false})
+        .when('/mall/luckybag',{templateUrl:'cardList.html',reloadOnSearch: false})
+        .when('/mall/luckybag/add',{templateUrl:'cardAdd.html',reloadOnSearch: false})
+        .when('/mall/luckybag/pick',{templateUrl:'cardPick.html',reloadOnSearch: false})
         .when('/mall/shopcart', {templateUrl: 'mallShopCart.html', reloadOnSearch: false})
         .when('/mall/address', {templateUrl: 'mallAddress.html', reloadOnSearch: false})
         .when('/mall/address/add', {templateUrl: 'mallAddressAdd.html', reloadOnSearch: false})
@@ -37,7 +40,7 @@ var lobyApp = angular.module('LobyHome', [
     angular.extend(toastrConfig, {
         newestOnTop: true,
         positionClass: 'toast-top-center',
-        preventDuplicates: true,
+        preventDuplicates: false,
         progressBar: true,
         timeOut: 2500,
         preventOpenDuplicates: false,

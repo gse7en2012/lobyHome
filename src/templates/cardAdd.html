@@ -1,0 +1,22 @@
+<div ng-click="back()" class="btn lobby-icon-btn">
+    <i class="fa fa-arrow-left lobby-menu"></i>
+</div>
+
+<div class=" lobby-reg-content" ng-controller="mallCardAddController">
+    <!--<div class="lobby-activity-header">乐比社区</div>-->
+    <div class="step1">
+        <div class="row">
+            <h2>增加福袋券:</h2>
+            <input type="text" class="form-control input-lg" placeholder="输入福袋验证码" ng-model="name">
+
+        </div>
+        <div class="row">
+            <a ng-class="{btn:true, 'btn-block':true} " ng-click="commit()">确定</a>
+        </div>
+    </div>
+
+
+</div>
+<div ui-content-for="modals">
+    <div ng-include="'modal1.html'"></div>
+</div>

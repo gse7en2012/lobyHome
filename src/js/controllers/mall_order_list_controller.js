@@ -8,9 +8,10 @@ angular.module('LobyHome')
 
         apiService.getMallOrder().then(function(data){
             $scope.orderList=data;
-            $scope.orderList.forEach(function(item){
-                item.state=stateList[item.order_state]
-            });
-            console.log($scope.orderList);
+            if(data.length>0) {
+                $scope.orderList.forEach(function (item) {
+                    item.state = stateList[item.order_state]
+                });
+            }
         })
     });

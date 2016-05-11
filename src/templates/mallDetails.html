@@ -8,12 +8,12 @@
 
     <div class="scrollable community-view" ng-controller="mallDetailsController">
         <div class="scrollable-content">
-            <div class="lobby-activity-carousel" style="height:0;padding-bottom: 50%;overflow: hidden">
+            <div class="lobby-activity-carousel" style="height:0;padding-bottom: 100%;overflow: hidden">
 
-                <ul rn-carousel class="image" rn-carousel-index="imgIndex"
-                    rn-carousel-controls-allow-loop style="padding-bottom: 50%">
+                <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-controls-allow-loop
+                    style="padding-bottom: 100%">
                     <li ng-repeat="img in imgList">
-                        <img ng-src="{{img}}"/>
+                        <img ng-src="{{img}}" img-load-auto-size class="auto-ver"/>
                     </li>
                 </ul>
                 <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1"
@@ -27,14 +27,17 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6 number-box">
-                        <div >
+                        <div>
                             <div>价格:{{price.toFixed(2)}}元</div>
                             <span style="position: relative;top:2px;">数量</span>
                             <i class="fa fa-minus-square-o fa-fw" ng-click="minusGoodNum()"></i>
-                            <input type="tel" class="form-control input-sm" style="width: 26%;display: inline-block;text-align: center;height: 22px;line-height: 22px;padding: 0;font-size: 14px;" ng-model="buyNum">
+                            <input type="tel" class="form-control input-sm"
+                                   style="width: 26%;display: inline-block;text-align: center;height: 22px;line-height: 22px;padding: 0;font-size: 14px;"
+                                   ng-model="buyNum">
                             <i class="fa fa-plus-square-o fa-fw" ng-click="addGoodNum()"></i>
                         </div>
-                        <a class="btn btn-block btn-yellow-f" ng-click="addToShopCarts()" style="position: relative;z-index: 999;">
+                        <a class="btn btn-block btn-yellow-f" ng-click="addToShopCarts()"
+                           style="position: relative;z-index: 999;">
                             <i class="fa fa-plus fa-fw"></i>放进购物车
                         </a>
                     </div>
@@ -52,26 +55,26 @@
 
                         <!--<h3>产品参数(产品详情)</h3>-->
                         <!--<table>-->
-                            <!--<tr>-->
-                                <!--<td>产地</td>-->
-                                <!--<td>非洲大陆马达加斯加</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>产地</td>-->
-                                <!--<td>非洲大陆马达加斯加</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>产地</td>-->
-                                <!--<td>非洲大陆马达加斯加</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>产地</td>-->
-                                <!--<td>非洲大陆马达加斯加</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>产地</td>-->
-                                <!--<td>非洲大陆马达加斯加</td>-->
-                            <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td>产地</td>-->
+                        <!--<td>非洲大陆马达加斯加</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td>产地</td>-->
+                        <!--<td>非洲大陆马达加斯加</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td>产地</td>-->
+                        <!--<td>非洲大陆马达加斯加</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td>产地</td>-->
+                        <!--<td>非洲大陆马达加斯加</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<td>产地</td>-->
+                        <!--<td>非洲大陆马达加斯加</td>-->
+                        <!--</tr>-->
                         <!--</table>-->
                     </div>
                 </div>

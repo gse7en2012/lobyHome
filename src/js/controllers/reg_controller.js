@@ -55,6 +55,7 @@ angular.module('LobyHome')
                 real_name: $scope.name,
                 check_code: $scope.code
             }).then(function () {
+                $scope.userInfo.is_registered=1;
                 $rootScope.Ui.turnOn('modal1');
             }).catch(function (e) {
                 toastr.error(e)
@@ -62,7 +63,4 @@ angular.module('LobyHome')
         };
 
 
-        $scope.regSuccessClick = function () {
-            location.href = $rootScope.red;
-        }
     });

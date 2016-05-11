@@ -22,6 +22,8 @@ var lobyApp = angular.module('LobyHome', [
         .when('/mall/address/add', {templateUrl: 'mallAddressAdd.html', reloadOnSearch: false})
         .when('/mall/address/edit/:aid', {templateUrl: 'mallAddressEdit.html', reloadOnSearch: false})
         .when('/mall/points', {templateUrl: 'mallPoints.html', reloadOnSearch: false})
+        .when('/mall/product/list', {templateUrl: 'mallProductList.html', reloadOnSearch: false})
+        .when('/mall/product/search', {templateUrl: 'mallProductSearch.html', reloadOnSearch: false})
         .when('/mall/ordersure', {templateUrl: 'mallOrderSure.html', reloadOnSearch: false})
         .when('/mall/order/list', {templateUrl: 'mallOrderList.html', reloadOnSearch: false})
         .when('/mall/order/details/:order_id', {templateUrl: 'mallOrderDetails.html', reloadOnSearch: false})

@@ -9,15 +9,16 @@
     <h1 class="name" ng-if="!userInfo.userId">请登录</h1>
     <div class="">
         <div class="list-group" ui-turn-off='uiSidebarRight'>
-            <!--<a class="list-group-item lobby-sidebar-item" ng-click="logout()">退出登录<i-->
-                    <!--class="fa fa-chevron-right pull-right"></i></a>-->
-            <!--<a class="list-group-item lobby-sidebar-item" href="#/mall/luckybag">我的卡券<i class="fa fa-chevron-right pull-right"></i></a>-->
+
+            <a class="list-group-item lobby-sidebar-item" href="#/mall/luckybag">我的卡券<i class="fa fa-chevron-right pull-right"></i></a>
             <a class="list-group-item lobby-sidebar-item" href="#/mall/order/list">我的订单<i
                     class="fa fa-chevron-right pull-right"></i></a>
             <!--<a class="list-group-item lobby-sidebar-item" href="#/mall/points">我的乐比积分<i class="fa fa-chevron-right pull-right"></i></a>-->
             <a class="list-group-item lobby-sidebar-item" href="#/mall/address">收货地址管理<i
                     class="fa fa-chevron-right pull-right"></i></a>
             <a class="list-group-item lobby-sidebar-item" href="#/mall/">乐比商城首页<i
+                    class="fa fa-chevron-right pull-right"></i></a>
+            <a class="list-group-item lobby-sidebar-item" ng-click="logout()">清除缓存<i
                     class="fa fa-chevron-right pull-right"></i></a>
         </div>
     </div>

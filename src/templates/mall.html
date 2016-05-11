@@ -2,17 +2,17 @@
     <div class="scrollable community-view"  style="background: #fff;">
         <div class="scrollable-content">
             <div class="lobby-mall-header">
-                <div ui-toggle="uiSidebarLeft" class="btn lobby-icon-btn" style="top: 0;">
+                <div ui-toggle="uiSidebarLeft" class="btn lobby-icon-btn" style="top: 10px;">
                     <i class="fa fa-bars lobby-menu"></i>
                 </div>
-                <div ui-toggle="uiSidebarRight" class="btn lobby-icon-btn" style="top: 0;right: 0">
+                <div ui-toggle="uiSidebarRight" class="btn lobby-icon-btn" style="top: 10px;right: 0">
                     <i class="fa fa-user lobby-menu" style="position: absolute;right: 10px;left:auto;"></i>
                 </div>
                 <!--<h1>LOBI MALL</h1>-->
 
-                <div class="lobby-mall-search" style="width: 85%;margin: auto;margin-top: -5px;">
-                    <input type="text" class="form-control" placeholder="商品名称" ng-model="keyword">
-                    <span class="fa fa-search"></span>
+                <div class="lobby-mall-search" style="width: 85%;margin: auto;margin-top: 5px;">
+                    <input type="text" class="form-control" placeholder="商品名称" ng-model="keyword" ng-change="searchProduct(keyword)" style="height:30px;">
+                    <span class="fa fa-search" ng-click="searchProduct(keyword)"></span>
                 </div>
                 <p class="lobby-mall-menu" ng-click="isMenuShow=!isMenuShow">分类目录<i
                         ng-class="{fa:true, 'fa-play':true,'fa-fw':true, 'fa-rotate-90':!isMenuShow,'fa-rotate-270':isMenuShow}"></i>
@@ -28,7 +28,7 @@
 
                     </ul>
                     <ul class="content" ng-show="menuIndex==cate.index" ng-repeat="cate in categories">
-                        <li ng-repeat="cc in cate.children">{{cc.name}}</li>
+                        <li ng-repeat="cc in cate.children"><a href="#/mall/product/list?lv_class={{cc.name}}">{{cc.name}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -58,23 +58,6 @@
                         </ul>
                     </div>
                 </div>
-                <!--<div class="c-item">-->
-                    <!--<h3>有机生活</h3>-->
-
-                    <!--<div class="c-item-box">-->
-
-                        <!--<ul ng-style="mItemBoxUlStyle">-->
-                            <!--<li ng-repeat="good in goodList2" ng-style="mItemBoxLiStyle" class="mall-show-list">-->
-                                <!--<a ng-href="#/mall/details/{{good.id}}">-->
-                                    <!--<div class="img-box" ng-style="mImgBoxStyle">-->
-                                        <!--<img ng-src="{{good.icon_url}}">-->
-                                        <!--<p>{{good.name}}</p>-->
-                                    <!--</div>-->
-                                <!--</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                <!--</div>-->
             </div>
         </div>
     </div>

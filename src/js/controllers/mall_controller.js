@@ -1,7 +1,7 @@
 angular.module('LobyHome')
 
     .controller('mallController', function ($scope, $timeout, $rootScope, updateWxTitle, apiService) {
-        updateWxTitle('乐比城');
+        updateWxTitle('公益商城');
 
         var baseWidth = screen.width * 0.75;
 
@@ -70,5 +70,10 @@ angular.module('LobyHome')
             location.href = '#/mall/details/2'
         };
 
+
+        $scope.searchProduct=function(keyword){
+            if(keyword=='') return;
+            location.href='#/mall/product/search?keyword='+keyword
+        }
 
     });

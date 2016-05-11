@@ -22,11 +22,12 @@
                 <div class="col-xs-12">
                     <p class="lobby-name" style="font-size: 18px;margin-bottom: 0;font-weight: bold;">{{name}}</p>
 
-                    <div class="lobby-full-name clearfix" style="margin-top: 18px;position: relative" ng-click="showLocation(latitude,longitude,address,introduce)">
+                    <div class="lobby-full-name clearfix" style="margin-top: 18px;position: relative" ng-click="showLocation(longitude,latitude,address,introduce)">
                         <i class="fa fa-map-marker"></i> {{address}}
                     </div>
-                    <div class="lobby-concat" style="margin-top: 10px;"><i class="fa fa-phone" style="
-    transform: rotateY(180deg);"></i> {{name_of_community_leader}}
+                    <div class="lobby-concat" style="margin-top: 10px;">
+                        <a href="tel:{{phone}}" style="color: #333;"><i class="fa fa-phone" style="
+    transform: rotateY(180deg);"></i> {{name_of_community_leader}}-{{phone}}</a>
                     </div>
                     <div style="margin-top: 8px;">
                         <i class="fa fa-clock-o"
@@ -35,9 +36,10 @@
                     </div>
                 </div>
             </div>
-            <div class="c-item">
+            <div class="c-item" >
                 <h3>最新活动</h3>
-                <div class="c-item-box">
+                <p ng-show="actList.length>0">敬请期待!</p>
+                <div class="c-item-box" ng-if="actList.length>0">
 
                     <ul ng-style="cItemBoxUlStyle">
                         <li ng-repeat="act in actList" ng-style="cItemBoxLiStyle">
@@ -51,12 +53,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="c-item">
+            <div class="c-item" >
                 <h3>社区项目</h3>
-                <div class="c-item-box">
+                <p ng-show="projectList.length>0">敬请期待!</p>
+                <div class="c-item-box" ng-if="projectList.length>0">
 
                     <ul ng-style="cItemBoxUlStyle">
-                        <li ng-repeat="act in actList" ng-style="cItemBoxLiStyle">
+                        <li ng-repeat="act in projectList" ng-style="cItemBoxLiStyle">
                             <a ng-href="{{act.link}}/{{act.id}}">
                                 <div class="img-box" ng-style="imgBoxStyle">
                                     <img ng-src="{{act.img}}">

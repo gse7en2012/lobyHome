@@ -1,0 +1,23 @@
+<a class="btn lobby-icon-btn" href="#/mall">
+    <i class="fa fa-arrow-left lobby-menu"></i>
+</a>
+
+<section class="scrollable" ng-controller="mallProductListController">
+    <div class="scrollable-content lobby-activity-content">
+        <ul class="list-group lobby-activity-list">
+            <!--<li ng-repeat="l in list" class="list-group-item" ng-click="toggleS()">{{l}}</li>-->
+            <li ng-repeat="prod in prodList" ng-click="goToDetails(prod.id)">
+                <img ng-src="{{prod.icon_url}}" width="100%">
+
+                <p>{{prod.name}}</p>
+            </li>
+            <li ng-hide="prodList.length>0" style="background: #fff">
+                <span class="no-result" style="display: block;
+    background: #fff;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 50px;color: #E98023"> 没有结果!</span>
+            </li>
+        </ul>
+    </div>
+</section>

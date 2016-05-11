@@ -110,6 +110,7 @@ angular.module('LobyHome.controllers.Main', [])
 
 
         $scope.showLocation = function (lat, lon, name, desc) {
+            console.log(lat, lon, name, desc);
             wx.openLocation({
                 latitude: lat || $scope.lat, // 纬度，浮点数，范围为90 ~ -90
                 longitude: lon || $scope.lon, // 经度，浮点数，范围为180 ~ -180。
@@ -146,7 +147,8 @@ angular.module('LobyHome.controllers.Main', [])
         };
 
         $scope.goToCommunityList = function () {
-            location.href = '#/community/search';
+            location.href='#/community/list';
+            //location.href = '#/community/search';
         };
 
         $scope.goToMap = function () {
@@ -162,7 +164,11 @@ angular.module('LobyHome.controllers.Main', [])
             console.log('acts got');
             $rootScope.actInfo = data;
             console.log($rootScope.actInfo);
-        })
+        });
 
+        $scope.regSuccessClick=function(){
+            console.log('333',$rootScope.red);
+            location.href = $rootScope.red;
+        }
 
     });

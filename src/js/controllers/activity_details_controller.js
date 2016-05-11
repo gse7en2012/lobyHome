@@ -13,14 +13,18 @@ angular.module('LobyHome')
                     actName: details.name,
                     location: details.address,
                     concatName: details.name_of_activity_leader,
+                    start_time:details.start_time,
+                    phone_number_of_activity_leader:details.phone_number_of_activity_leader,
                     time: details.time,
-                    lastTime: details.duration + '分钟',
+                    lastTime: details.duration,
                     num: details.total_number_of_people + '人',
                     age: details.participant,
-                    ctx: details.intruduce,
+                    ctx: details.introduce,
                     online_time: details.online_time,
                     price: details.price,
-                    is_need_registered:details.is_need_registered
+                    is_need_registered: details.is_need_registered,
+                    longitude:details.longitude,
+                    latitude:details.latitude
                 };
                 $scope.imgList = eval(details.images);
 
@@ -34,7 +38,7 @@ angular.module('LobyHome')
 
 
             $scope.joinActivity = function (actId) {
-                if ($scope.actInfo.is_need_registered != 1) {
+                if ($scope.actInfo.is_need_registered && $scope.userInfo.is_registered == 0) {
                     alert('请先通过手机号码绑定用户!');
                     return location.href = '#/reg?red=' + encodeURIComponent(location.href);
                 }
@@ -64,6 +68,8 @@ angular.module('LobyHome')
                     if (data.result.is_need_pay == 0) {
                         $rootScope.Ui.turnOn('modal2');
                     }
+                }).catch(function (e) {
+                    toastr.error(e)
                 })
             };
 

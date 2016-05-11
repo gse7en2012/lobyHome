@@ -40,7 +40,7 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
     this.getCommunityList    = function (lon, lat) {
         return httpRequest({
             method: 'GET',
-            url: remoteAddress + 'nearest_community?page=1&size=10&latitude=' + lat + '&longitude=' + lon
+            url: remoteAddress + 'nearest_community?page=1&size=10&radius=1000000&latitude=' + lat + '&longitude=' + lon
         }).then(transferData)
     };
     this.getCommunityDetails = function (id) {
@@ -71,6 +71,19 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         return httpRequest({
             method: 'GET',
             url: '/api/homepage'
+        }).then(transferData)
+    };
+
+    this.getProductList=function(levelClass2){
+        return httpRequest({
+            method: 'GET',
+            url: '/api/products?level2_class='+levelClass2
+        }).then(transferData)
+    };
+    this.searchProductList=function(keyword){
+        return httpRequest({
+            method: 'GET',
+            url: '/api/products?keyword='+keyword
         }).then(transferData)
     };
 

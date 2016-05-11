@@ -11,7 +11,7 @@
             <input type="text" class="form-control input-lg" placeholder="姓名" ng-model="name">
             <input type="tel" class="form-control input-lg" placeholder="手机号码" ng-model="phone">
 
-            <p><i ng-class="{fa:true, 'fa-square-o':!isRead,'fa-check-square-o':isRead}" style="font-size: 20px;position: relative;top: 2px;width: 18px;" ng-click="isRead=!isRead"></i> 我已阅读<a href='#'>乐比共享免责声明</a></p>
+            <p><i ng-class="{fa:true, 'fa-square-o':!isRead,'fa-check-square-o':isRead}" style="font-size: 20px;position: relative;top: 2px;width: 18px;" ng-click="isRead=!isRead"></i> 我已阅读<a href='javascript:;' ui-turn-on="modal4">乐比共享免责声明</a></p>
         </div>
         <div class="row">
             <a ng-class="{btn:true, 'btn-block':true,'btn-disabled':!name||!phone||!isRead} " ng-click="stepNext()">下一步</a>
@@ -41,4 +41,5 @@
 </div>
 <div ui-content-for="modals">
     <div ng-include="'modal1.html'"></div>
+    <div ng-include="'modal4.html'"></div>
 </div>

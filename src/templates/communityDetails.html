@@ -9,7 +9,7 @@
             <!--<img src="images/t1.jpg">-->
 
             <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide
-                rn-carousel-controls-allow-loop rn-carousel-easing rn-carousel-buffered
+                rn-carousel-controls-allow-loop  rn-carousel-buffered
                 style="padding-bottom: 50%">
                 <li ng-repeat="img in imgList">
                     <img ng-src="{{img}}"/>
@@ -38,10 +38,10 @@
             </div>
             <div class="c-item" >
                 <h3>最新活动</h3>
-                <p ng-show="actList.length>0">敬请期待!</p>
+                <p ng-hide="actList.length>0" style="margin-left: 30px;">即将开放,敬请期待!</p>
                 <div class="c-item-box" ng-if="actList.length>0">
 
-                    <ul ng-style="cItemBoxUlStyle">
+                    <ul ng-style="cItemBoxUlStyle1">
                         <li ng-repeat="act in actList" ng-style="cItemBoxLiStyle">
                             <a ng-href="/#/activity/{{act.id}}">
                                 <div class="img-box" ng-style="imgBoxStyle">
@@ -55,10 +55,10 @@
             </div>
             <div class="c-item" >
                 <h3>社区项目</h3>
-                <p ng-show="projectList.length>0">敬请期待!</p>
+                <p ng-hide="projectList.length>0" style="margin-left: 30px;">即将开放,敬请期待!</p>
                 <div class="c-item-box" ng-if="projectList.length>0">
 
-                    <ul ng-style="cItemBoxUlStyle">
+                    <ul ng-style="cItemBoxUlStyle2">
                         <li ng-repeat="act in projectList" ng-style="cItemBoxLiStyle">
                             <a ng-href="{{act.link}}/{{act.id}}">
                                 <div class="img-box" ng-style="imgBoxStyle">

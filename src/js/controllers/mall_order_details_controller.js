@@ -8,10 +8,21 @@ angular.module('LobyHome')
 
         apiService.getMallOrderDetails(state,orderId).then(function(data){
             data = data[0];
-            data.state= stateList[data.order_state];
-            $scope.orderDetails=data;
-            $scope.total_pp=Number($scope.orderDetails.total_price)+Number($scope.orderDetails.freight)
+            if(!!data) {
+                data.state = stateList[data.order_state];
+                $scope.orderDetails = data;
+                $scope.total_pp = Number($scope.orderDetails.total_price) + Number($scope.orderDetails.freight)
+            }else{
+                alert('该订单不存在!');
+                location.href='#/mall';
+            }
         })
 
+        $scope.cancelOrder=function(){
+            apiService.cancelPayOrder().then(function(data){
+                alert('取消订单成功!');
+                location.href='#/mall/order/list';
+            })
+        }
 
     });

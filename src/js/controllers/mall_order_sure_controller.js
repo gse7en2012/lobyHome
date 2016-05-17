@@ -49,12 +49,18 @@ angular.module('LobyHome')
                             alert('付款成功!');
                             // 支付成功后的回调函数
                             $rootScope.Ui.turnOn('modal3');
+                        },
+                        cancel:function(res){
+                            alert('取消支付!');
+                            apiService.cancelPay();
                         }
                     };
                     wx.chooseWXPay(wxPayConfig);
                 } else {
                     alert('免费购买!');
                 }
+            }).catch(function(e){
+                alert(e);
             })
         }
     });

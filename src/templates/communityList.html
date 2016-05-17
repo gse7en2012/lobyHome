@@ -20,6 +20,8 @@
                 <p class="location">距离您{{(comm.distance).toFixed(2)}}kM</p>
             </li>
         </ul>
-
+        <div ng-hide="commList.length>0" style="text-align: center;font-size: 28px;margin-top: 30px;color:#E98023;">
+            附近没有乐比社区!
+        </div>
     </div>
 </div>

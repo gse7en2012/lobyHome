@@ -8,6 +8,7 @@ angular.module('LobyHome')
 
         apiService.getAddressList().then(function (data) {
             $scope.addressList = data;
+            if(data.length>0)
             $scope.addressList.forEach(function (item) {
                 item.receiver_phone_number = item.receiver_phone_number.slice(0, 3) + '****' + item.receiver_phone_number.slice(7, 11)
             })

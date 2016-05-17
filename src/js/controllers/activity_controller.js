@@ -1,7 +1,7 @@
 angular.module('LobyHome')
     .controller('activityController',
         function ($scope, $timeout, $rootScope, apiService, updateWxTitle, $cookies) {
-            updateWxTitle('最新活动');
+            updateWxTitle('活动报名');
 
             $scope.goToDetails = function (id) {
                 location.href = '#/activity/' + id;

@@ -65,6 +65,7 @@
     <div class="navbar navbar-app navbar-absolute-bottom" style="position: fixed;color: #333;    border-top: 1px solid #ddd;background: #fff;">
         <div class="row order-details-bottom" style="font-size: 18px;">
             <div class="col-xs-12">
+                <a class="btn btn-yellow-f btn-block pull-right"  ng-if="orderDetails.order_state<2" ng-click="cancelOrder()">取消订单</a>
                 <a class="btn btn-yellow btn-block pull-right" ng-href="#/mall/ordersure" ng-if="orderDetails.order_state<2">去付款</a>
 
                 <a class="btn btn-yellow btn-block pull-right" ng-if="orderDetails.order_state>=2" ng-href="#/mall/details/{{orderDetails.product_id}}">再次购买</a>

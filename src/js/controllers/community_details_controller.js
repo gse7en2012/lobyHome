@@ -9,18 +9,23 @@ angular.module('LobyHome')
             $scope.address   = commData.address;
             $scope.introduce = commData.introduce;
 
-            $scope.name_of_community_leader         = commData.name_of_community_leader;
+            $scope.name_of_community_leader = commData.name_of_community_leader;
             $scope.closeing_time            = commData.closeing_time;
             $scope.opening_time             = commData.opening_time;
             $scope.latitude                 = commData.latitude;
             $scope.longitude                = commData.longitude;
             $scope.imgList                  = eval(commData.images);
-            $scope.phone = commData.phone_number_of_community_leader;
+            $scope.phone                    = commData.phone_number_of_community_leader;
 
-            $scope.actList         = data.list;
+            $scope.actList          = data.list;
             $scope.projectList = data.project_list;
-            $scope.mItemBoxUlStyle = {
+            $scope.mItemBoxUlStyle1 = {
                 "width": (baseWidth + 12) * $scope.actList.length + 'px',
+                "height": baseWidth * 0.6 + 'px'
+            };
+
+            $scope.mItemBoxUlStyle2 = {
+                "width": (baseWidth + 12) * $scope.projectList.length + 'px',
                 "height": baseWidth * 0.6 + 'px'
             };
 
@@ -33,7 +38,11 @@ angular.module('LobyHome')
         var baseWidth = screen.width * 0.75;
         baseWidth     = 280;
 
-        $scope.cItemBoxUlStyle = {
+        $scope.cItemBoxUlStyle1 = {
+            "width": (baseWidth + 12) * 5 + 'px',
+            "height": baseWidth / 2 + 40 + 'px'
+        };
+        $scope.cItemBoxUlStyle2 = {
             "width": (baseWidth + 12) * 5 + 'px',
             "height": baseWidth / 2 + 40 + 'px'
         };

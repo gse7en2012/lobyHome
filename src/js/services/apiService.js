@@ -164,6 +164,18 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             data: data
         }).then(transferData)
     };
+    this.cancelPayOrder=function(data){
+        return httpRequest({
+            method:'DELETE',
+            url:remoteAddress+'order?order_state=1'
+        }).then(transferData)
+    };
+    this.cancelPay=function(){
+        return httpRequest({
+            method:'POST',
+            url:remoteAddress+'cancel_pay'
+        }).then(transferData)
+    }
 
 
     this.getAddressList = function (id) {

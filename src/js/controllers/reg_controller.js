@@ -15,6 +15,7 @@ angular.module('LobyHome')
 
 
         $scope.stepNext = function () {
+            //$rootScope.Ui.turnOn('modal1');
             if (!$scope.name || !$scope.phone || !$scope.isRead) return;
             return checkPhoneIsReg($scope.phone).then(function (r) {
                 if (!r) {

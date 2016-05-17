@@ -1,11 +1,18 @@
 angular.module('LobyHome')
 
     .controller('mallController', function ($scope, $timeout, $rootScope, updateWxTitle, apiService) {
-        updateWxTitle('公益商城');
+        updateWxTitle('惠民公益');
 
         var baseWidth = screen.width * 0.75;
 
         baseWidth = 280;
+
+        $scope.searchKeyUp=function($event){
+            if($event.keyCode==13){
+                $scope.searchProduct($scope.keyword)
+            }
+        };
+
 
         $scope.getMItemBoxUlStyle = function (len) {
             return {

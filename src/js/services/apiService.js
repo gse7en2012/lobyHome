@@ -256,5 +256,19 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData);
     };
 
+    this.getCardConfig=function(){
+        return httpRequest({
+            method:'GET',
+            url:remoteAddress+'coupon/card_config'
+        }).then(transferData);
+    };
+
+    this.getCardExt=function(){
+        return httpRequest({
+            method:'GET',
+            url:remoteAddress+'coupon/card_ext'
+        }).then(transferData);
+    };
+
     //this.deleteInfoArt=(artId)=>httpRequest({method: 'POST', url: `/info/art/delete`, data: {art_id:artId}});
 }]);

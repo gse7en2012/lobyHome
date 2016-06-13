@@ -31,11 +31,16 @@ var config = {
             './bower_components/angular-BMap/src/angular-bmap.js',
             './bower_components/angular-toastr/dist/angular-toastr.min.js',
             './bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
+            './bower_components/flickity/dist/flickity.pkgd.min.js',
+            './bower_components/angular-flickity/dist/angular-flickity.min.js',
         ],
 
         css: {
             prepend: [],
-            append: ['./bower_components/angular-toastr/dist/angular-toastr.min.css'],
+            append: [
+                './bower_components/angular-toastr/dist/angular-toastr.min.css',
+                './bower_components/flickity/dist/flickity.min.css'
+            ],
         },
 
         fonts: [

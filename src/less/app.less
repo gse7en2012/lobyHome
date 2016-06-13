@@ -138,12 +138,20 @@ body {
       color: #fff;
       font-size: 18px;
       margin-bottom: 0;
-      background-image: -webkit-linear-gradient(270deg, rgba(10, 10, 10, 0) 0, rgba(0, 0, 0, .95));
-      background-image: linear-gradient(180deg, rgba(10, 10, 10, 0) 0, rgba(0, 0, 0, .95));
-      padding: 5px 0;
+      //background-image: -webkit-linear-gradient(270deg, rgba(10, 10, 10, 0) 0, rgba(233, 128, 35, 1));
+      //background-image: linear-gradient(180deg, rgba(10, 10, 10, 0) 0, rgba(233, 128, 35, 1));
+      padding: 7px 0;
+      background: #e98023;
     }
   }
 }
+
+.lobby-community-list li p{
+  text-align:left;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
 .mall-show-list{
   p{
     position: absolute;
@@ -152,10 +160,14 @@ body {
     bottom: 0;
     color: #fff;
     font-size: 22px;
-    background-image: -webkit-linear-gradient(270deg, rgba(10, 10, 10, 0) 0, rgba(0, 0, 0, .95));
-    background-image: linear-gradient(180deg, rgba(10, 10, 10, 0) 0, rgba(0, 0, 0, .95));
-    padding: 5px 0;
+    //background-image: -webkit-linear-gradient(270deg, rgba(10, 10, 10, 0) 0, rgba(233, 128, 35, 1));
+    //background-image: linear-gradient(180deg, rgba(10, 10, 10, 0) 0, rgba(233, 128, 35, 1));
+    padding: 5px;
+    background: #e98023;
     margin: 0!important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .img-box{
     position: relative;
@@ -262,16 +274,16 @@ body {
     height: auto;
     overflow: visible;
     padding-bottom: 0;
-    margin-bottom: 55px;
+    margin-bottom:0;
   }
   .location {
     position: absolute;
-    bottom: -35px;
+    //bottom: -35px;
     background: none;
     text-align: right;
-    padding-right: 20px;
-    font-size: 18px;
-    color: @yellow;
+    padding-right: 10px;
+    font-size: 16px;
+    color:#fff;
   }
 }
 
@@ -316,7 +328,7 @@ img.auto-ver {
 }
 
 .c-item {
-  margin-top: 20px;
+  margin-top: 8px;
   margin-bottom: 10px;
   h3 {
     line-height: 1.5;
@@ -499,16 +511,16 @@ img.auto-ver {
       position: relative;
       .fa-search {
         position: absolute;
-        left: 2%;
+        left: 4%;
         top: 20%;
-        font-size: 22px;
+        font-size: 20px;
         color: #aaa;
       }
     }
     input {
       border-radius: 30px;
       border: none;
-      text-indent: 20px;
+      text-indent: 22px;
       font-size: 18px;
       top: 5%;
       left: 10%;
@@ -528,15 +540,25 @@ img.auto-ver {
     margin-top: 5px;
   }
   .lobby-list-menu {
-    margin-top: -2px;
+    margin-top: 0;
     width: 100%;
     border: 0;
     border-radius: 0;
     background: #dedede;
-    padding: 10px 20px;
+    padding: 0;
+    float:none;
+    position: static;
+    -webkit-transition: height .25s ease-in;
+    transition: height .25s ease-in;
+    height:0;
+    overflow: hidden;
+    &.show{
+      height:29%;
+    }
     .header{
       padding-left: 0;
       overflow: hidden;
+      margin: 10px auto;
       li{
         list-style: none;
         float:left;
@@ -547,6 +569,7 @@ img.auto-ver {
         height: 30px;
         line-height: 30px;
         text-align: center;
+        font-weight: bold;
       }
       li.active{
         border-bottom: 5px solid @yellow;
@@ -558,6 +581,24 @@ img.auto-ver {
       padding-left: 20px;
       li{
         line-height: 2;
+      }
+    }
+    .cate-list{
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 0;
+      li{
+        float: left;
+        width: 25%;
+        text-align: center;
+        margin-top: 5px;
+        list-style: none;
+        p{margin: 0 auto;}
+        .img{
+          border-radius: 50%;
+          width: 60%;
+          margin: 5px auto;
+        }
       }
     }
   }
@@ -1134,3 +1175,12 @@ img.auto-ver {
     }
   }
 }
+
+
+
+.flickity-prev-next-button{ display: none!important;}
+#community-carousel .flickity-page-dots{ top: 60%!important;height: 30px;}
+.lobby-activity-carousel .flickity-page-dots{ top: 92%!important;}
+#mall-carousel .flickity-page-dots{top:72%!important;}
+.app-body .flickity-page-dots .dot{width: 18px;height: 18px;margin: 0 4px;background: #aaa;opacity: 1;}
+.app-body .flickity-page-dots .dot.is-selected{background: @yellow;}

@@ -7,7 +7,8 @@ var lobyApp = angular.module('LobyHome', [
     'LobyHome.controllers.Main',
     'angular-carousel',
     'mobile-angular-ui.gestures',
-    'angularBMap'
+    'angularBMap',
+    'bc.Flickity'
 ]).config(function ($routeProvider) {
     $routeProvider
         .when('/', {templateUrl: 'home.html', reloadOnSearch: false})

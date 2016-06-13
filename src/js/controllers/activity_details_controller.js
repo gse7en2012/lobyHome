@@ -1,9 +1,18 @@
 angular.module('LobyHome')
 
     .controller('activityDetailsController',
-        function ($scope, $timeout, $rootScope, $routeParams, apiService, updateWxTitle, toastr) {
+        function ($scope, $timeout, $rootScope, $routeParams,$sce, apiService, updateWxTitle, toastr) {
             $scope.actId   = $routeParams.act_id;
             $scope.imgList = [];
+
+
+            $scope.flickityOptions={
+                //freeScroll: true,
+                wrapAround: true,
+                cellSelector: '.mySlideClassName',
+                imagesLoaded: true,
+                autoPlay:true
+            };
 
 
             apiService.getActivityDetails($routeParams.act_id).then(function (data) {
@@ -19,7 +28,7 @@ angular.module('LobyHome')
                     lastTime: details.duration,
                     num: details.total_number_of_people + '人',
                     age: details.participant,
-                    ctx: details.introduce,
+                    ctx: $sce.trustAsHtml(details.introduce),
                     online_time: details.online_time,
                     price: details.price,
                     is_need_registered: details.is_need_registered,
@@ -32,6 +41,10 @@ angular.module('LobyHome')
                     actName: details.name,
                     online_time: details.online_time
                 });
+
+                $timeout(function() {
+                    var flkty = new Flickity( '.slider', $scope.flickityOptions);
+                },0);
 
                 updateWxTitle(details.name);
             });

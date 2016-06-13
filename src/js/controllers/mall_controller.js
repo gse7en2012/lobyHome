@@ -12,7 +12,14 @@ angular.module('LobyHome')
                 $scope.searchProduct($scope.keyword)
             }
         };
-
+        $scope.flickityOptions={
+            //freeScroll: true,
+            wrapAround: true,
+            cellSelector: '.mySlideClassName',
+            imagesLoaded: true,
+            autoPlay:true,
+            cellAlign: 'left'
+        };
 
         $scope.getMItemBoxUlStyle = function (len) {
             return {
@@ -42,7 +49,17 @@ angular.module('LobyHome')
             });
 
 
-            console.log($scope.productObj);
+            $scope.cccc=[];
+            data.categories.forEach(function(item){
+                item.children.forEach(function(i){
+                    $scope.cccc.push(i.name)
+                })
+            })
+
+
+            $timeout(function() {
+                var flkty = new Flickity( '.slider', $scope.flickityOptions);
+            },0);
 
             //$scope.mItemBoxUlStyle = {
             //    "width": (baseWidth + 12) * $scope.goodList.length + 'px',

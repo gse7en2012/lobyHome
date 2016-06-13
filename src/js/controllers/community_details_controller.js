@@ -1,6 +1,15 @@
 angular.module('LobyHome')
 
-    .controller('communityDetailsController', function ($scope, $timeout, $rootScope, $routeParams, apiService, updateWxTitle) {
+    .controller('communityDetailsController', function ($scope, $timeout, $rootScope, $routeParams, apiService, FlickityService,updateWxTitle) {
+
+
+        $scope.flickityOptions={
+            //freeScroll: true,
+            wrapAround: true,
+            cellSelector: '.mySlideClassName',
+            imagesLoaded: true,
+            autoPlay:true
+        };
 
 
         apiService.getCommunityDetails($routeParams.cid).then(function (data) {
@@ -28,9 +37,24 @@ angular.module('LobyHome')
                 "width": (baseWidth + 12) * $scope.projectList.length + 'px',
                 "height": baseWidth * 0.6 + 'px'
             };
-
+            //
+            //var element = angular.element(document.getElementById('slider'));
+            //FlickityService.create(element[0], element[0].id,$scope.flickityOptions);
+            //console.log('eee');
+            $timeout(function() {
+                //var element = angular.element(document.getElementById('slider'));
+                //FlickityService.create(element[0], element[0].id,$scope.flickityOptions);
+                var flkty = new Flickity( '.slider', $scope.flickityOptions);
+            },0);
 
         });
+
+
+        //angular.element(document).ready(function(){
+        //    var element = angular.element(document.getElementById('slider'));
+        //    FlickityService.create(element[0], element[0].id,$scope.flickityOptions);
+        //});
+
 
 
         updateWxTitle('社区详情');

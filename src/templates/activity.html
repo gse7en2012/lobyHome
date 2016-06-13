@@ -6,14 +6,20 @@
     <div class="scrollable-content">
 
         <div class="lobby-activity-carousel" style="height:0;padding-bottom: 100%;overflow: hidden">
-            <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide
-                rn-carousel-controls-allow-loop rn-carousel-easing rn-carousel-buffered
-                style="padding-bottom: 100%">
-                <li ng-repeat="img in imgList">
-                    <img ng-src="{{img}}" img-load-auto-size class="auto-ver"/>
-                </li>
-            </ul>
-            <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1" slides="imgList"></div>
+            <!--<ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide-->
+                <!--rn-carousel-controls-allow-loop rn-carousel-easing rn-carousel-buffered-->
+                <!--style="padding-bottom: 100%">-->
+                <!--<li ng-repeat="img in imgList">-->
+                    <!--<img ng-src="{{img}}" img-load-auto-size class="auto-ver"/>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1" slides="imgList"></div>-->
+
+            <div id="slider" class="slider">
+                <div class="mySlideClassName" ng-repeat="img in imgList" style="width: 100%">
+                    <img data-ng-src="{{ img }}" alt="" style="width: 100%;display: block;"/>
+                </div>
+            </div>
         </div>
         <div class="lobby-activity-box">
             <div class="row row-1">
@@ -30,7 +36,7 @@
                     </div>
                     <div class="lobby-concat" style="margin-top: 10px;font-size: 14px;">
                         <a href="tel:{{actInfo.phone_number_of_activity_leader}}" style="color: #333;">
-                        <i class="fa fa-phone fa-flip-horizontal"></i>{{actInfo.concatName}}-{{actInfo.phone_number_of_activity_leader}}
+                        <i class="fa fa-phone fa-flip-horizontal"></i>{{actInfo.concatName}}<br>{{actInfo.phone_number_of_activity_leader}}
                         </a>
                     </div>
                 </div>
@@ -64,12 +70,13 @@
             </div>
             <div class="row">
                 <div class="col-xs-12" style="font-size: 16px;
-    line-height: 1.5;">
-                    {{actInfo.ctx}}
+    line-height: 1.5;" ng-bind-html="actInfo.ctx">
+
                 </div>
             </div>
         </div>
     </div>
+    <p style="text-align: center">联系乐比 客服专线:0755-82557821</p>
 </div>
 <div ui-content-for="modals">
     <div ng-include="'modal2.html'"></div>

@@ -1,56 +1,82 @@
 <div class="lobby-mall" ng-controller="mallController">
-    <div class="scrollable community-view"  style="background: #fff;">
+    <div class="scrollable community-view" style="background: #fff;">
         <div class="scrollable-content">
             <div class="lobby-mall-header">
-                <div ui-toggle="uiSidebarLeft" class="btn lobby-icon-btn" style="top: 10px;">
-                    <i class="fa fa-bars lobby-menu"></i>
-                </div>
-                <div ui-toggle="uiSidebarRight" class="btn lobby-icon-btn" style="top: 10px;right: 0">
-                    <i class="fa fa-user lobby-menu" style="position: absolute;right: 10px;left:auto;"></i>
+                <div ui-toggle="uiSidebarLeft" class="btn lobby-icon-btn" style="top: 10px;color: #fff;">
+                    <i class="fa fa-home lobby-menu" style="display: block;width: 30px;height: 30px;font-size: 26px;
+    margin-top: -5px;"></i>首页</div>
+                <div ui-toggle="uiSidebarRight" class="btn lobby-icon-btn" style="top: 10px;right: 10px;left:auto;color: #fff">
+                    <i class="fa fa-user lobby-menu" style="display: block;width: 30px;height: 30px;font-size: 24px;
+    margin-top: -5px;"></i>我的
                 </div>
                 <!--<h1>LOBI MALL</h1>-->
 
                 <div class="lobby-mall-search" style="width: 85%;margin: auto;margin-top: 5px;">
-                    <input type="text" class="form-control" placeholder="商品名称" ng-model="keyword" ng-keyup="searchKeyUp($event)" style="height:30px;">
-                    <span class="fa fa-search" ng-click="searchProduct(keyword)"></span>
+                    <form>
+                        <input type="search" class="form-control" placeholder="商品名称" ng-model="keyword"
+                               ng-keyup="searchKeyUp($event)" style="height:30px;">
+                        <span class="fa fa-search" ng-click="searchProduct(keyword)"></span>
+                    </form>
                 </div>
                 <p class="lobby-mall-menu" ng-click="isMenuShow=!isMenuShow">分类目录<i
                         ng-class="{fa:true, 'fa-play':true,'fa-fw':true, 'fa-rotate-90':!isMenuShow,'fa-rotate-270':isMenuShow}"></i>
                 </p>
 
-                <div class="dropdown-menu lobby-list-menu" ng-show="isMenuShow">
-                    <ul class="header">
-                        <!--<li ng-click="menuIndex=1" ng-class="{active:menuIndex==1}">创客空间</li>-->
-                        <!--<li ng-click="menuIndex=2" ng-class="{active:menuIndex==2}">有机生活</li>-->
-                        <!--<li ng-click="menuIndex=3" ng-class="{active:menuIndex==3}">家庭健康</li>-->
 
-                        <li ng-click="changeMenuIndex(cate.index)" ng-class="{active:menuIndex==cate.index}" ng-repeat="cate in categories">{{cate.name}}</li>
-
-                    </ul>
-                    <ul class="content" ng-show="menuIndex==cate.index" ng-repeat="cate in categories">
-                        <li ng-repeat="cc in cate.children"><a href="#/mall/product/list?lv_class={{cc.name}}">{{cc.name}}</a></li>
-                    </ul>
-                </div>
             </div>
+            <div  ng-class="{'dropdown-menu':true,'lobby-list-menu':true,show:isMenuShow}">
+                <!--<ul class="header">-->
 
-            <div class="lobby-activity-carousel"
-                 style="height:0;padding-bottom: 50%;overflow: hidden;margin-top: 4px;: ">
-                <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-controls-allow-loop style="padding-bottom: 50%">
-                    <li ng-repeat="img in imgList">
-                        <a href="#/mall/details/{{img.Product_id}}"><img ng-src="{{img.banner_img}}"/></a>
+                    <!--<li ng-click="changeMenuIndex(cate.index)" ng-class="{active:menuIndex==cate.index}"-->
+                        <!--ng-repeat="cate in categories">{{cate.name}}-->
+                    <!--</li>-->
+
+                <!--</ul>-->
+                <!--<ul class="content" ng-show="menuIndex==cate.index" ng-repeat="cate in categories">-->
+                    <!--<li ng-repeat="cc in cate.children"><a-->
+                            <!--href="#/mall/product/list?lv_class={{cc.name}}">{{cc.name}}</a></li>-->
+                <!--</ul>-->
+
+                <ul class="cate-list">
+                    <li ng-repeat="item in cccc">
+                        <div class="img">
+                            <img src="http://7xsu9h.com1.z0.glb.clouddn.com/user_head_icon.png">
+                        </div>
+                        <p>{{item}}</p>
                     </li>
                 </ul>
-                <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1" slides="imgList"></div>
+
             </div>
-            <div class="lobby-community-box">
+            <div class="lobby-activity-carousel"
+                 style="overflow: hidden;">
+                <!--<ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-controls-allow-loop style="padding-bottom: 50%">-->
+                <!--<li ng-repeat="img in imgList">-->
+                <!--<a href="#/mall/details/{{img.Product_id}}"><img ng-src="{{img.banner_img}}"/></a>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--<div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1" slides="imgList"></div>-->
+
+                <div id="mall-carousel" class="slider">
+                    <div class="mySlideClassName" ng-repeat="img in imgList" style="width: 100%;margin-right: 5px;">
+                        <a href="#/mall/details/{{img.Product_id}}">
+                            <img data-ng-src="{{ img.banner_img }}"style="width: 100%;display: block;"/>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="lobby-community-box" style="padding-top: 0;">
                 <div class="c-item" ng-repeat="(cate,productList) in productObj">
                     <h3>{{cate}}</h3>
+
                     <div class="c-item-box">
                         <ul ng-style="getMItemBoxUlStyle(productList.len)">
                             <li ng-repeat="good in productList.list" ng-style="mItemBoxLiStyle" class="mall-show-list">
                                 <a ng-href="#/mall/details/{{good.id}}">
                                     <div class="img-box" ng-style="mImgBoxStyle">
                                         <img ng-src="{{good.icon_url}}">
+
                                         <p>{{good.name}}</p>
                                     </div>
                                 </a>
@@ -59,6 +85,8 @@
                     </div>
                 </div>
             </div>
+
+            <p style="text-align: center">联系乐比 客服专线:0755-82557821</p>
         </div>
     </div>
 </div>

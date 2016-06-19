@@ -1,28 +1,48 @@
-<a class="btn lobby-icon-btn" href="#/community">
-    <i class="fa fa-arrow-left lobby-menu"></i>
-</a>
-<div class="scrollable" ng-controller="communityController">
-    <div class="scrollable-content">
-        <div class="lobby-community-header" style="background: none;border-bottom: 0;margin-bottom: -50px;">
-            <!--<i class="fa fa-map-marker map"  ng-click="goToMap()" style="z-index: 110;-->
-    <!--background: #fff;-->
-    <!--border: 1px solid #e98023;"></i>-->
-            <!--<i class="fa fa-map-o map-b"  style="z-index: 112;    font-size: 16px;-->
-    <!--top: 22px;-->
-    <!--right: 20px;" ng-click="goToMap()"></i>-->
+<div ng-controller="communityController">
+    <a class="btn lobby-icon-btn" href="#/community" style="top:60px;">
+        <i class="fa fa-arrow-left lobby-menu"></i>
+    </a>
+
+    <div class="lobby-mall">
+        <div class="lobby-mall-header" style="padding: 10px 20px;">
+            <div class="lobby-mall-search" style="width: 80%;margin: auto;">
+                <form>
+                    <input type="search" class="form-control" placeholder="社区名称" ng-model="keyword"
+                           ng-keyup="searchKeyUp($event)" style="height:30px;">
+                <span class="fa fa-search" ng-click="searchCommunity(keyword)"
+                      style="color: #666;font-size: 18px;"></span>
+                </form>
+            </div>
+
         </div>
-        <ul class="list-group lobby-community-list" >
-            <li ng-repeat="comm in commList">
-                <a ng-href="#/community/details/{{comm.id}}">
-                    <img ng-src="{{comm.icon_url}}" width="100%">
-                    <p>{{comm.name}}</p>
-                </a>
-                <p class="location">距离您{{(comm.distance).toFixed(2)}}kM</p>
-            </li>
-        </ul>
-        <div ng-hide="commList.length>0" style="text-align: center;font-size: 28px;margin-top: 30px;color:#E98023;">
-            附近没有乐比社区!
+    </div>
+    <div class="scrollable" style="top:50px;height: auto;">
+        <div class="scrollable-content">
+            <div class="lobby-community-header" style="background: none;border-bottom: 0;margin-bottom: -50px;">
+                <!--<i class="fa fa-map-marker map"  ng-click="goToMap()" style="z-index: 110;-->
+                <!--background: #fff;-->
+                <!--border: 1px solid #e98023;"></i>-->
+                <!--<i class="fa fa-map-o map-b"  style="z-index: 112;    font-size: 16px;-->
+                <!--top: 22px;-->
+                <!--right: 20px;" ng-click="goToMap()"></i>-->
+            </div>
+
+
+            <ul class="list-group lobby-community-list">
+                <li ng-repeat="comm in commList">
+                    <a ng-href="#/community/details/{{comm.id}}">
+                        <img ng-src="{{comm.icon_url}}" width="100%">
+
+                        <p>{{comm.name}}</p>
+                    </a>
+
+                    <p class="location">距离您{{(comm.distance).toFixed(2)}}kM</p>
+                </li>
+            </ul>
+            <div ng-hide="commList.length>0" style="text-align: center;font-size: 28px;margin-top: 30px;color:#E98023;">
+                附近没有乐比社区!
+            </div>
+            <p style="text-align: center">联系乐比 客服专线:0755-82557821</p>
         </div>
-        <p style="text-align: center">联系乐比 客服专线:0755-82557821</p>
     </div>
 </div>

@@ -1,24 +1,40 @@
 angular.module('LobyHome')
 
-    .controller('mallDetailsController', function ($scope, $timeout, $rootScope, $routeParams, apiService, updateWxTitle, toastr) {
+    .controller('mallDetailsController', function ($scope, $timeout, $rootScope, $routeParams,$sce, apiService, updateWxTitle, toastr) {
+
+
+        $scope.flickityOptions = {
+            //freeScroll: true,
+            wrapAround: true,
+            cellSelector: '.mySlideClassName',
+            imagesLoaded: true,
+            autoPlay: true
+        };
 
 
         apiService.getProductionDetails($routeParams.good_id).then(function (data) {
             var goodData        = data[0];
             $scope.price = goodData.price;
+            $scope.hm_price = goodData.origin_price;
             $scope.on_sale_time = goodData.on_sale_time;
-            $scope.description  = goodData.description;
+            $scope.description  = $sce.trustAsHtml(goodData.description);
             $scope.name         = goodData.name;
             $scope.inventory    = goodData.inventory;
             $scope.productId    = goodData.id;
             $scope.imgList      = eval(goodData.images);
+
+            $timeout(function () {
+                var flkty = new Flickity('.slider', $scope.flickityOptions);
+            }, 0);
+
+
         });
 
 
         $scope.addToShopCarts = function () {
-            if($scope.userInfo.is_registered!=1){
+            if ($scope.userInfo.is_registered != 1) {
                 alert('请先通过手机号码绑定用户!');
-                return location.href='#/reg?red='+encodeURIComponent(location.href);
+                return location.href = '#/reg?red=' + encodeURIComponent(location.href);
             }
             apiService.addToShopCart($scope.productId, $scope.buyNum).then(function (data) {
                 toastr.success('已添加至购物车!')
@@ -51,9 +67,9 @@ angular.module('LobyHome')
 
         //立即购买
         $scope.buyNow = function () {
-            if($scope.userInfo.is_registered!=1){
+            if ($scope.userInfo.is_registered != 1) {
                 alert('请先通过手机号码绑定用户!');
-                return location.href='#/reg?red='+encodeURIComponent(location.href);
+                return location.href = '#/reg?red=' + encodeURIComponent(location.href);
             }
 
             var orderList = generateOrderList();

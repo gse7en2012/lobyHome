@@ -24,10 +24,17 @@ angular.module('LobyHome')
                     signType: data.signType, // 签名方式，默认'SHA1'
                     cardSign: data.cardSign, // 卡券签名
                     success: function (res) {
-                        alert(JSON.stringify(res));
-                        $scope.rrrrr=JSON.stringify(res);
-                        var cardList= res.cardList; // 用户选中的卡券列表信息
-                        console.log(res);
+
+                        var cardList= JSON.parse(res.cardList); // 用户选中的卡券列表信息
+                        console.log(typeof cardList,cardList,cardList[0],'dd');
+                        apiService.decryptCardCode(cardList[0].card_id,cardList[0].encrypt_code).then(function(data){
+                            wx.openCard({
+                                cardList: [{
+                                    cardId:cardList[0].card_id,
+                                    code: data.code
+                                }]// 需要打开的卡券列表
+                            })
+                        })
                     },
                     fail:function(res){
                         alert(JSON.stringify(res));
@@ -35,6 +42,34 @@ angular.module('LobyHome')
                 });
             })
         };
+
+
+        $scope.cardDestory=function(){
+            apiService.getCardConfig().then(function(data){
+                $scope.erer=JSON.stringify(data);
+                wx.chooseCard({
+                    //  shopId: '', // 门店Id
+                    //  cardType: '', // 卡券类型
+                    //  cardId: '', // 卡券Id
+                    timestamp: data.timestamp, // 卡券签名时间戳
+                    nonceStr: data.nonceStr, // 卡券签名随机串
+                    signType: data.signType, // 签名方式，默认'SHA1'
+                    cardSign: data.cardSign, // 卡券签名
+                    success: function (res) {
+                        var cardList= JSON.parse(res.cardList); // 用户选中的卡券列表信息
+                        apiService.decryptCardCode(cardList[0].card_id,cardList[0].encrypt_code).then(function(data){
+                            apiService.destroyCard(cardList[0].card_id,data.code).then(function(data){
+                                alert('使用卡券成功!已核销!');
+                            })
+                        });
+                    },
+                    fail:function(res){
+                        alert(JSON.stringify(res));
+                    }
+                });
+            })
+        };
+
 
 
         $scope.cardAdd=function(){

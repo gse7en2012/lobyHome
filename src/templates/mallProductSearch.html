@@ -4,12 +4,22 @@
 
 <section class="scrollable" ng-controller="mallProductSearchController">
     <div class="scrollable-content lobby-activity-content">
-        <ul class="list-group lobby-activity-list">
+        <ul class="list-group mall-search-list">
             <!--<li ng-repeat="l in list" class="list-group-item" ng-click="toggleS()">{{l}}</li>-->
-            <li ng-repeat="prod in prodList" ng-click="goToDetails(prod.id)">
-                <img ng-src="{{prod.icon_url}}" width="100%">
+            <li ng-repeat="prod in prodList" ng-click="goToDetails(prod.id)" class="mall-product-item">
+                <div class="img">
+                    <img ng-src="{{prod.icon_url}}" img-load-auto-size>
+                </div>
 
-                <p>{{prod.name}}</p>
+                <div class="intro">
+                    <p class="name">{{prod.name}}</p>
+                    <div class="bot-left">
+                        <span class="price-tag">惠民价</span>
+                        <span class="price"> <i class="fa fa-cny"></i>80</span>
+                        <span class="o-price"> <i class="fa fa-cny"></i>100</span>
+                    </div>
+                    <a class="bot-right btn btn-yellow">去购买</a>
+                </div>
             </li>
             <li ng-hide="prodList.length>0" style="background: #fff">
                 <span class="no-result" style="display: block;

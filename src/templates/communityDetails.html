@@ -5,7 +5,7 @@
 <div class="scrollable community-view" ng-controller="communityDetailsController">
     <div class="scrollable-content">
 
-        <div class="lobby-activity-carousel" style="height:0;padding-bottom: 50%;overflow: hidden" id="community-carousel">
+        <div class="lobby-activity-carousel" id="community-carousel">
             <!--<img src="images/t1.jpg">-->
 
             <!--<ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-auto-slide-->
@@ -59,33 +59,53 @@
                 <p ng-hide="actList.length>0" style="margin-left: 30px;">即将开放,敬请期待!</p>
                 <div class="c-item-box" ng-if="actList.length>0">
 
-                    <ul ng-style="cItemBoxUlStyle1">
-                        <li ng-repeat="act in actList" ng-style="cItemBoxLiStyle">
-                            <a ng-href="/#/activity/{{act.id}}">
-                                <div class="img-box" ng-style="imgBoxStyle">
-                                <img ng-src="{{act.icon_url}}">
+                    <!--<ul ng-style="cItemBoxUlStyle1">-->
+                        <!--<li ng-repeat="act in actList" ng-style="cItemBoxLiStyle">-->
+                            <!--<a ng-href="/#/activity/{{act.id}}">-->
+                                <!--<div class="img-box" ng-style="imgBoxStyle">-->
+                                <!--<img ng-src="{{act.icon_url}}">-->
+                                <!--</div>-->
+                                <!--<p><span class="c-item-act-name">{{act.name}}</span> </p>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <div class="actSlider">
+                        <div ng-repeat="act in actList" style="width: 150px;margin-right:2px;height:150px" class="mall-show-list">
+                            <a ng-href="/#/activity/{{act.id}}" style="height: 100%;">
+                                <div class="img-box" style="height: 100px;position: static;">
+                                    <img ng-src="{{act.icon_url}}">
+                                    <p style="background: none;color: #333;text-align: center;"><span class="c-item-act-name">{{act.name}}</span><br>{{act.start_time.split(' ')[0]}} </p>
                                 </div>
-                                <p><span class="c-item-act-name">{{act.name}}</span> </p>
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
+            <div class="c-item">
+                <h3>服务中心介绍</h3>
+                <p ng-bind-html="introduce" style="font-size: 14px;"></p>
             </div>
             <div class="c-item" >
                 <h3>社区项目</h3>
                 <p ng-hide="projectList.length>0" style="margin-left: 30px;">即将开放,敬请期待!</p>
                 <div class="c-item-box" ng-if="projectList.length>0">
 
-                    <ul ng-style="cItemBoxUlStyle2">
-                        <li ng-repeat="act in projectList" ng-style="cItemBoxLiStyle">
-                            <a ng-href="{{act.link}}/{{act.id}}">
-                                <div class="img-box" ng-style="imgBoxStyle">
-                                    <img ng-src="{{act.img}}">
+
+                    <div class="projectSlider">
+                        <div ng-repeat="act in projectList" style="width: 150px;margin-right:2px;" class="mall-show-list">
+                            <a ng-href="/#/project/{{act.id}}" style="height: 100%;">
+                                <div class="img-box" style="height: 100%;">
+                                    <img ng-src="{{act.icon_url}}">
+
+                                    <p><span class="c-item-act-name">{{act.name}}</span> </p>
                                 </div>
-                                <p><span class="c-item-act-name">{{act.name}}</span></p>
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>

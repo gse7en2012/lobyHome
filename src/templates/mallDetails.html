@@ -10,14 +10,22 @@
         <div class="scrollable-content">
             <div class="lobby-activity-carousel" style="height:0;padding-bottom: 100%;overflow: hidden">
 
-                <ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-controls-allow-loop
-                    style="padding-bottom: 100%">
-                    <li ng-repeat="img in imgList">
-                        <img ng-src="{{img}}" img-load-auto-size class="auto-ver"/>
-                    </li>
-                </ul>
-                <div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1"
-                     slides="imgList"></div>
+                <!--<ul rn-carousel class="image" rn-carousel-index="imgIndex" rn-carousel-controls-allow-loop-->
+                    <!--style="padding-bottom: 100%">-->
+                    <!--<li ng-repeat="img in imgList">-->
+                        <!--<img ng-src="{{img}}" img-load-auto-size class="auto-ver"/>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<div rn-carousel-index="imgIndex" rn-carousel-indicators ng-if="imgList.length > 1"-->
+                     <!--slides="imgList"></div>-->
+
+                <div id="slider" class="slider">
+                    <div class="mySlideClassName" ng-repeat="img in imgList" style="width: 100%">
+                        <img data-ng-src="{{ img }}" alt="" style="width: 100%;display: block;"/>
+                    </div>
+                </div>
+
+
             </div>
             <div class="lobby-mall-details-box">
                 <div class="row">
@@ -25,57 +33,35 @@
                         <div style="font-size: 22px;margin-bottom: 0;font-weight: bold;">{{name}}</div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6 number-box">
+                <div class="row" style="position: relative;padding-bottom: 40px;">
+                    <div class="col-xs-6 number-box" style="height: auto;">
                         <div>
-                            <div>价格:{{price.toFixed(2)}}元</div>
+                            <div>
+                                惠民价:
+                                <span style="font-size: 110%;color:#d21c1c;margin-right: 2px;"><i class="fa fa-cny"></i>{{hm_price.toFixed(2)}}</span>
+                                <span style="text-decoration: line-through;color: #b3b3b3;white-space:nowrap;"><i class="fa fa-cny"></i>{{price.toFixed(2)}}</span>
+                            </div>
                             <span style="position: relative;top:2px;">数量</span>
                             <i class="fa fa-minus-square-o fa-fw" ng-click="minusGoodNum()"></i>
-                            <input type="tel" class="form-control input-sm"
-                                   style="width: 26%;display: inline-block;text-align: center;height: 22px;line-height: 22px;padding: 0;font-size: 14px;"
-                                   ng-model="buyNum">
+                            <input type="tel" class="form-control input-sm" style="width: 26%;display: inline-block;text-align: center;height: 22px;line-height: 22px;padding: 0;font-size: 14px;" ng-model="buyNum">
                             <i class="fa fa-plus-square-o fa-fw" ng-click="addGoodNum()"></i>
                         </div>
-                        <a class="btn btn-block btn-yellow-f" ng-click="addToShopCarts()"
-                           style="position: relative;z-index: 999;">
-                            <i class="fa fa-plus fa-fw"></i>放进购物车
-                        </a>
+
                     </div>
                     <div class="col-xs-6">
-                        <div>预计发货时间:<br>{{on_sale_time}}</div>
-                        <a class="btn btn-block btn-yellow" ng-click="buyNow()" style="margin-top: 13px;"><i
-                                class="fa fa-shopping-bag fa-fw"></i>立即购买 </a>
+                        <div>预计发货时间:<br><p style="text-align: center;margin-top: 8px;">3天内</p></div>
+
                     </div>
+                    <a class="btn btn-block btn-yellow-f" ng-click="addToShopCarts()" style="position: absolute;bottom:0;z-index: 999;left: 25%;transform: translateX(-50%);width: 40%;"><i class="fa fa-plus fa-fw"></i>放进购物车</a>
+                    <a class="btn btn-block btn-yellow" ng-click="buyNow()" style="position: absolute;bottom:0;left: 75%;transform: translateX(-50%);width: 40%;"><i class="fa fa-shopping-bag fa-fw"></i>立即购买 </a>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <h3>产品描述</h3>
 
-                        <p>{{description}}</p>
+                        <p ng-bind-html="description"></p>
 
-                        <!--<h3>产品参数(产品详情)</h3>-->
-                        <!--<table>-->
-                        <!--<tr>-->
-                        <!--<td>产地</td>-->
-                        <!--<td>非洲大陆马达加斯加</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                        <!--<td>产地</td>-->
-                        <!--<td>非洲大陆马达加斯加</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                        <!--<td>产地</td>-->
-                        <!--<td>非洲大陆马达加斯加</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                        <!--<td>产地</td>-->
-                        <!--<td>非洲大陆马达加斯加</td>-->
-                        <!--</tr>-->
-                        <!--<tr>-->
-                        <!--<td>产地</td>-->
-                        <!--<td>非洲大陆马达加斯加</td>-->
-                        <!--</tr>-->
-                        <!--</table>-->
+
                     </div>
                 </div>
             </div>

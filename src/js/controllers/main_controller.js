@@ -51,6 +51,16 @@ angular.module('LobyHome.controllers.Main', [])
             //$rootScope.loading = false;
         });
 
+        $scope.scanQRCode=function(){
+            wx.scanQRCode({
+                needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function (res) {
+                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                }
+            });
+        };
+
 
         $http.get('/wechat/create_wx_config?url=' + encodeURI(signUrl)).success(function (data) {
             var _wxSDKConfig = {
@@ -62,7 +72,7 @@ angular.module('LobyHome.controllers.Main', [])
                     signature: data.result.signature,// 必填，签名，见附录1
                     jsApiList: [
                         'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone',
-                        'openLocation', 'getLocation', 'getNetworkType', 'chooseWXPay','chooseCard','addCard','openCard'
+                        'openLocation', 'getLocation', 'getNetworkType', 'chooseWXPay','chooseCard','addCard','openCard','scanQRCode'
                     ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                 }
             };

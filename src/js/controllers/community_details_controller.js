@@ -1,15 +1,42 @@
 angular.module('LobyHome')
 
-    .controller('communityDetailsController', function ($scope, $timeout, $rootScope, $routeParams, apiService, FlickityService,updateWxTitle) {
+    .controller('communityDetailsController', function ($scope, $timeout, $rootScope, $routeParams, $sce, apiService, FlickityService, updateWxTitle) {
 
 
-        $scope.flickityOptions={
+        $scope.flickityOptions = {
             //freeScroll: true,
             wrapAround: true,
             cellSelector: '.mySlideClassName',
             imagesLoaded: true,
-            autoPlay:true
+            autoPlay: true,
+            cellAlign: 'left',
+            prevNextButtons: false
         };
+
+
+        $scope.listFlickityOptions = {
+            //freeScroll: true,
+            wrapAround: true,
+            cellSelector: '.mall-show-list',
+            imagesLoaded: true,
+            autoPlay: true,
+            cellAlign: 'left',
+            prevNextButtons: false
+        };
+
+
+
+        apiService.getCommunitySp($routeParams.cid).then(function(data){
+
+            $scope.proList=data;
+            console.log(data);
+            //$timeout(function () {
+            //
+            //    var projectFlkty = new Flickity('.projectSlider', $scope.listFlickityOptions);
+            //
+            //}, 0);
+
+        });
 
 
         apiService.getCommunityDetails($routeParams.cid).then(function (data) {
@@ -25,6 +52,8 @@ angular.module('LobyHome')
             $scope.longitude                = commData.longitude;
             $scope.imgList                  = eval(commData.images);
             $scope.phone                    = commData.phone_number_of_community_leader;
+            $scope.introduce                = $sce.trustAsHtml(commData.introduce);
+
 
             $scope.actList          = data.list;
             $scope.projectList = data.project_list;
@@ -41,11 +70,19 @@ angular.module('LobyHome')
             //var element = angular.element(document.getElementById('slider'));
             //FlickityService.create(element[0], element[0].id,$scope.flickityOptions);
             //console.log('eee');
-            $timeout(function() {
+            $timeout(function () {
                 //var element = angular.element(document.getElementById('slider'));
                 //FlickityService.create(element[0], element[0].id,$scope.flickityOptions);
-                var flkty = new Flickity( '.slider', $scope.flickityOptions);
-            },0);
+                var flkty = new Flickity('.slider', $scope.flickityOptions);
+
+
+                //idList.forEach(function(item){
+                var listFlkty = new Flickity('.actSlider', $scope.listFlickityOptions);
+                var listFlkty2 = new Flickity('.projectSlider', $scope.listFlickityOptions);
+                //})
+
+
+            }, 0);
 
         });
 
@@ -54,7 +91,6 @@ angular.module('LobyHome')
         //    var element = angular.element(document.getElementById('slider'));
         //    FlickityService.create(element[0], element[0].id,$scope.flickityOptions);
         //});
-
 
 
         updateWxTitle('社区详情');

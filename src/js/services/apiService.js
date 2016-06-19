@@ -50,6 +50,19 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData)
     };
 
+    this.getCommunitySp=function(id){
+        return httpRequest({
+            method:'GET',
+            url:remoteAddress+'community_project?id='+id
+        }).then(transferData)
+    };
+
+    this.searchCommunity = function (ky,lat,lon) {
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'nearest_community?keyword=' + ky+'&latitude=' + lat + '&longitude=' + lon
+        }).then(transferData)
+    };
 
     this.joinActivity = function (data) {
         return httpRequest({
@@ -267,6 +280,24 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         return httpRequest({
             method:'GET',
             url:remoteAddress+'coupon/card_ext'
+        }).then(transferData);
+    };
+
+    this.decryptCardCode=function(cardId,encryptCode){
+        return httpRequest({
+            method:'GET',
+            url:remoteAddress+'coupon/get_code?card_id='+cardId+'&encrypt_code='+encryptCode
+        }).then(transferData);
+    };
+
+    this.destroyCard=function(cardId,code){
+        return httpRequest({
+            method:'POST',
+            url:remoteAddress+'coupon/consume',
+            data:{
+                card_id:cardId,
+                code:code
+            }
         }).then(transferData);
     };
 

@@ -18,8 +18,21 @@ angular.module('LobyHome')
             cellSelector: '.mySlideClassName',
             imagesLoaded: true,
             autoPlay:true,
-            cellAlign: 'left'
+            cellAlign: 'left',
+            prevNextButtons: false
         };
+
+
+        $scope.listFlickityOptions={
+            //freeScroll: true,
+            wrapAround: true,
+            cellSelector: '.mall-show-list',
+            imagesLoaded: true,
+            autoPlay:true,
+            cellAlign: 'left',
+            prevNextButtons: false
+        };
+
 
         $scope.getMItemBoxUlStyle = function (len) {
             return {
@@ -37,28 +50,35 @@ angular.module('LobyHome')
 
             // var productCateList=[];
             $scope.productObj = {};
-            data.product.forEach(function (prod) {
+            var idList=[];
+            data.product.forEach(function (prod,index) {
                 if (!$scope.productObj[prod.level1_class]) {
                     $scope.productObj[prod.level1_class] = {
                         len: 0,
-                        list: []
+                        list: [],
+                        id:'cate'+index
                     };
+                    idList.push('cate'+index);
                 }
                 $scope.productObj[prod.level1_class].list.push(prod);
                 $scope.productObj[prod.level1_class].len = $scope.productObj[prod.level1_class].len + 1;
-            });
 
+            });
 
             $scope.cccc=[];
             data.categories.forEach(function(item){
                 item.children.forEach(function(i){
                     $scope.cccc.push(i.name)
                 })
-            })
+            });
 
 
             $timeout(function() {
                 var flkty = new Flickity( '.slider', $scope.flickityOptions);
+
+                idList.forEach(function(item){
+                    new Flickity('.'+item, $scope.listFlickityOptions);
+                })
             },0);
 
             //$scope.mItemBoxUlStyle = {

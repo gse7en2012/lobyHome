@@ -65,5 +65,15 @@ angular.module('LobyHome')
             return d * (1 + fl * (h1 * sf * (1 - sg) - h2 * (1 - sf) * sg));
         }
 
+        $scope.searchCommunity=function(keyword){
+           apiService.searchCommunity(keyword,$rootScope.lon,$rootScope.lat).then(function(data){
+               $scope.commList = data;
+           })
+        };
 
+        $scope.searchKeyUp=function($event){
+            if($event.keyCode==13){
+                $scope.searchCommunity($scope.keyword)
+            }
+        };
     });

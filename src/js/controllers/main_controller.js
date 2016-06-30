@@ -2,15 +2,34 @@ angular.module('LobyHome.controllers.Main', [])
 
     .controller('MainController', function ($scope, $timeout, $rootScope, $http, $cookies, apiService) {
 
-        var signUrl = (location.protocol + "//" + location.host + location.pathname + location.search);
+        var signUrl = encodeURIComponent(location.href.split('#')[0]);
         var appId   = 'wxc9aa23b94ca6c9bb';
         var appIdProduct = 'wxe50a5e6792ceecc2';
         var redirectUri = encodeURIComponent(location.protocol + "//" + location.host + '/wechat/ask_userinfo');
         var ENVDEV = false;
         var lobiUid = $cookies.get('lobi_userid');
 
-
         if (redirectUri.indexOf('test') == -1) appId = appIdProduct;
+
+
+        $scope.getShareInfo=function(){
+            $scope.shareInfo={
+                title: $cookies.get('lobi_title'), // 分享标题
+                desc: $cookies.get('lobi_desc'), // 分享描述
+                link:  $cookies.get('lobi_link'), // 分享链接
+                imgUrl:  $cookies.get('lobi_img_url'), // 分享图标
+                type: 'link', // 分享类型,music、video或link，不填默认为link
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            };
+            wx.onMenuShareAppMessage($scope.shareInfo);
+            wx.onMenuShareTimeline($scope.shareInfo);
+        };
+
 
 
         if (!ENVDEV && !lobiUid) {
@@ -44,11 +63,8 @@ angular.module('LobyHome.controllers.Main', [])
         });
 
         $rootScope.$on('$routeChangeSuccess', function () {
-            //     alert(location.href);
-            // $timeout(function () {
             $rootScope.loading = false;
-            //  }, 300);
-            //$rootScope.loading = false;
+            $timeout($scope.getShareInfo,500)
         });
 
         $scope.scanQRCode=function(){
@@ -62,7 +78,7 @@ angular.module('LobyHome.controllers.Main', [])
         };
 
 
-        $http.get('/wechat/create_wx_config?url=' + encodeURI(signUrl)).success(function (data) {
+        $http.get('/wechat/create_wx_config?url=' + (signUrl)).success(function (data) {
             var _wxSDKConfig = {
                 auth: {
                     debug: false,
@@ -81,21 +97,21 @@ angular.module('LobyHome.controllers.Main', [])
 
             wx.config(_wxSDKConfig.auth);
             wx.ready(function () {
-                wx.onMenuShareAppMessage({
-                    title: 'lobitest', // 分享标题
-                    desc: 'testlobi', // 分享描述
-                    link: 'http://qq.com', // 分享链接
-                    imgUrl: 'https://pic4.zhimg.com/7d8c15df29ce6900c80f9cf630992687_m.jpg', // 分享图标
-                    type: 'link', // 分享类型,music、video或link，不填默认为link
-                    success: function () {
-                        // 用户确认分享后执行的回调函数
-                        alert('share success!')
-                    },
-                    cancel: function () {
-                        // 用户取消分享后执行的回调函数
-                        alert('share error!')
-                    }
-                });
+                //wx.onMenuShareAppMessage({
+                //    title: 'lobitest', // 分享标题
+                //    desc: 'testlobi', // 分享描述
+                //    link: 'http://qq.com', // 分享链接
+                //    imgUrl: 'https://pic4.zhimg.com/7d8c15df29ce6900c80f9cf630992687_m.jpg', // 分享图标
+                //    type: 'link', // 分享类型,music、video或link，不填默认为link
+                //    success: function () {
+                //        // 用户确认分享后执行的回调函数
+                //        alert('share success!')
+                //    },
+                //    cancel: function () {
+                //        // 用户取消分享后执行的回调函数
+                //        alert('share error!')
+                //    }
+                //});
 
                 wx.getLocation({
                     type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'

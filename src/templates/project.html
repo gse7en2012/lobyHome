@@ -1,0 +1,26 @@
+<a class="btn lobby-icon-btn" ng-click="back()">
+    <i class="fa fa-arrow-left lobby-menu"></i>
+</a>
+
+<div ng-controller="communityProjectController" class="scrollable">
+    <div class="scrollable-content">
+
+        <div class="lobby-activity-carousel" style="height:0;padding-bottom: 80%;overflow: hidden">
+            <div id="slider" class="slider">
+                <div class="mySlideClassName"style="width: 100%">
+                    <img data-ng-src="{{ project.icon_url }}" alt="" style="width: 100%;display: block;"/>
+                </div>
+            </div>
+        </div>
+        <div class="lobby-activity-box">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>{{project.name}}</h3>
+                </div>
+                <div class="col-xs-12" style="font-size: 16px;line-height: 1.5;" ng-bind-html="project.introduce">
+                </div>
+            </div>
+        </div>
+    </div>
+    <p style="text-align: center">联系乐比 客服专线:0755-82557821</p>
+</div>

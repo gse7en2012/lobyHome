@@ -3,7 +3,7 @@
 </a>
 
 <section class="scrollable" ng-controller="mallProductSearchController">
-    <div class="scrollable-content lobby-activity-content">
+    <div class="scrollable-content lobby-activity-content" ui-scroll-bottom="loadMore()">
         <ul class="list-group mall-search-list">
             <!--<li ng-repeat="l in list" class="list-group-item" ng-click="toggleS()">{{l}}</li>-->
             <li ng-repeat="prod in prodList" ng-click="goToDetails(prod.id)" class="mall-product-item">
@@ -15,19 +15,17 @@
                     <p class="name">{{prod.name}}</p>
                     <div class="bot-left">
                         <span class="price-tag">惠民价</span>
-                        <span class="price"> <i class="fa fa-cny"></i>80</span>
-                        <span class="o-price"> <i class="fa fa-cny"></i>100</span>
+                        <span class="price"> <i class="fa fa-cny"></i>{{prod.price}}</span>
+                        <span class="o-price"> <i class="fa fa-cny"></i>{{prod.origin_price}}</span>
                     </div>
                     <a class="bot-right btn btn-yellow">去购买</a>
                 </div>
             </li>
             <li ng-hide="prodList.length>0" style="background: #fff">
-                <span class="no-result" style="display: block;
-    background: #fff;
-    text-align: center;
-    font-size: 30px;
-    margin-top: 50px;color: #E98023"> 没有结果!</span>
+                <span class="no-result" style="display: block;background: #fff;text-align: center;font-size: 30px;margin-top: 50px;color: #E98023"> 没有结果!</span>
             </li>
         </ul>
+        <p style="text-align: center;font-size: 14px;color: #999;margin: 10px auto;" ng-show="loading">正在加载更多...</p>
+        <p style="text-align: center;font-size: 14px;color: #999;margin: 10px auto;" ng-show="noMore">——没有更多了——</p>
     </div>
 </section>

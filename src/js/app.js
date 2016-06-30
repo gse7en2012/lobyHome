@@ -33,6 +33,7 @@ var lobyApp = angular.module('LobyHome', [
         .when('/community', {templateUrl: 'community.html', reloadOnSearch: false})
         .when('/activity/:act_id', {templateUrl: 'activity.html', reloadOnSearch: false})
         .when('/community/list', {templateUrl: 'communityList.html', reloadOnSearch: false})
+        .when('/community/project/:pid',{templateUrl: 'project.html', reloadOnSearch: false})
         .when('/community/search', {templateUrl: 'communitySearch.html', reloadOnSearch: false})
         .when('/community/details/:cid', {templateUrl: 'communityDetails.html', reloadOnSearch: false})
         .when('/community/map', {templateUrl: 'Map.html', reloadOnSearch: false});
@@ -56,7 +57,7 @@ lobyApp.factory('updateWxTitle', function () {
         var body       = document.getElementsByTagName('body')[0];
         document.title = title;
         var iframe     = document.createElement("iframe");
-        iframe.setAttribute("src", "images/t1.jpg");
+        iframe.setAttribute("src", "images/t2.jpg");
 
         iframe.addEventListener('load', function () {
             setTimeout(function () {

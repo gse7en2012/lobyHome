@@ -28,9 +28,16 @@ angular.module('LobyHome')
             wrapAround: true,
             cellSelector: '.mall-show-list',
             imagesLoaded: true,
-            autoPlay:true,
+            autoPlay:false,
             cellAlign: 'left',
             prevNextButtons: false
+        };
+
+
+        $scope.coverHash={
+            '创客空间':'images/ckkj.jpg',
+            '家庭健康':'images/jtjk.jpg',
+            '有机生活':'images/yjsh.jpg'
         };
 
 

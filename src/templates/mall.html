@@ -45,7 +45,7 @@
                     <li ng-repeat="cc in cate.children">
                         <a href="#/mall/product/list?lv_class={{cc.name}}">
                             <div class="img">
-                                <img src="http://7xsu9h.com1.z0.glb.clouddn.com/user_head_icon.png">
+                                <img src="{{cc.icon_url}}">
                             </div>
                             <p>{{cc.name}}</p>
                         </a>
@@ -94,10 +94,8 @@
                     <div class="c-item-box">
                         <div class="{{productList.id}}">
                             <div class="mall-show-list" style="width: 150px;margin-right:2px;">
-                                <a href="javascript:;" style="height: 100%;">
-                                    <div class="img-box" style="height: 100%;background: #e98023;font-size: 20px;text-align: center;color: #fff;line-height: 100px;">
-                                        查看更多
-                                    </div>
+                                <a href="#/mall/product/list?lv_class={{cate}}&type=1" style="height: 100%;">
+                                    <img ng-src="{{coverHash[cate]}}" style="width: 100%;">
                                 </a>
                             </div>
                             <div ng-repeat="good in productList.list" style="width: 150px;margin-right:2px;" class="mall-show-list">

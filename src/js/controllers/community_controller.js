@@ -66,7 +66,7 @@ angular.module('LobyHome')
         }
 
         $scope.searchCommunity=function(keyword){
-           apiService.searchCommunity(keyword,$rootScope.lon,$rootScope.lat).then(function(data){
+           apiService.searchCommunity(keyword,$rootScope.lat,$rootScope.lon).then(function(data){
                $scope.commList = data;
            })
         };

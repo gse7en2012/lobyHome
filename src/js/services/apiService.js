@@ -6,7 +6,7 @@
 angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http, $q) {
     var remoteAddress = 'http://test.lobicom.com/api/';
 
-    if(location.host.indexOf('test')==-1) remoteAddress='http://lobicom.com/api/';
+    if (location.host.indexOf('test') == -1) remoteAddress = 'http://lobicom.com/api/';
 
     function httpRequest(opts) {
         var d = $q.defer();
@@ -50,17 +50,17 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData)
     };
 
-    this.getCommunitySp=function(id){
+    this.getCommunitySp = function (id) {
         return httpRequest({
-            method:'GET',
-            url:remoteAddress+'community_project?id='+id
+            method: 'GET',
+            url: remoteAddress + 'community_project?id=' + id
         }).then(transferData)
     };
 
-    this.searchCommunity = function (ky,lat,lon) {
+    this.searchCommunity = function (ky, lat, lon) {
         return httpRequest({
             method: 'GET',
-            url: remoteAddress + 'nearest_community?keyword=' + ky+'&latitude=' + lat + '&longitude=' + lon
+            url: remoteAddress + 'nearest_community?keyword=' + ky + '&latitude=' + lat + '&longitude=' + lon
         }).then(transferData)
     };
 
@@ -87,16 +87,17 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData)
     };
 
-    this.getProductList=function(levelClass2){
+    this.getProductList    = function (levelType, levelClass,page,size) {
+        var lvClass = levelType == 1 ? 'level1_class' : 'level2_class';
         return httpRequest({
             method: 'GET',
-            url: '/api/products?level2_class='+levelClass2
+            url: '/api/products?' + lvClass + '=' + levelClass+'&page='+page+'&size='+size
         }).then(transferData)
     };
-    this.searchProductList=function(keyword){
+    this.searchProductList = function (keyword,page,size) {
         return httpRequest({
             method: 'GET',
-            url: '/api/products?keyword='+keyword
+            url: '/api/products?keyword=' + keyword+'&page='+page+'&size='+size
         }).then(transferData)
     };
 
@@ -107,13 +108,13 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData)
     };
 
-    this.getShopCartList   = function (id) {
+    this.getShopCartList    = function (id) {
         return httpRequest({
             method: 'GET',
             url: remoteAddress + 'shoppingcart',
         }).then(transferData)
     };
-    this.addToShopCart     = function (productId, buyNum, userId) {
+    this.addToShopCart      = function (productId, buyNum, userId) {
         return httpRequest({
             method: 'POST',
             url: remoteAddress + 'shoppingcart',
@@ -124,14 +125,14 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             }
         })
     };
-    this.editShopCartNum   = function (data) {
+    this.editShopCartNum    = function (data) {
         return httpRequest({
             method: 'PUT',
             url: remoteAddress + 'shoppingcart',
             data: data
         })
     };
-    this.deleteShopCartGood=function(data){
+    this.deleteShopCartGood = function (data) {
         return httpRequest({
             method: 'DELETE',
             url: remoteAddress + 'shoppingcart',
@@ -155,10 +156,10 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData)
     };
 
-    this.getMallOrderDetails=function(state,id){
+    this.getMallOrderDetails = function (state, id) {
         return httpRequest({
-            method:'GET',
-            url:remoteAddress+'order_detail?order_state='+state+'&id='+id
+            method: 'GET',
+            url: remoteAddress + 'order_detail?order_state=' + state + '&id=' + id
         }).then(transferData)
     };
 
@@ -177,16 +178,16 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             data: data
         }).then(transferData)
     };
-    this.cancelPayOrder=function(data){
+    this.cancelPayOrder   = function (data) {
         return httpRequest({
-            method:'DELETE',
-            url:remoteAddress+'order?order_state=1'
+            method: 'DELETE',
+            url: remoteAddress + 'order?order_state=1'
         }).then(transferData)
     };
-    this.cancelPay=function(){
+    this.cancelPay        = function () {
         return httpRequest({
-            method:'POST',
-            url:remoteAddress+'cancel_pay'
+            method: 'POST',
+            url: remoteAddress + 'cancel_pay'
         }).then(transferData)
     }
 
@@ -210,14 +211,14 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         })
     };
 
-    this.editAddress = function (data) {
+    this.editAddress        = function (data) {
         return httpRequest({
             method: 'PUT',
             url: remoteAddress + 'address',
             data: data
         })
     };
-    this.editDefaultAddress=function(data){
+    this.editDefaultAddress = function (data) {
         return httpRequest({
             method: 'PUT',
             url: remoteAddress + 'setdefault_address',
@@ -241,62 +242,62 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
             url: remoteAddress + 'check_code?phone_number=' + phone
         })
     };
-    this.postReg = function (data) {
+    this.postReg         = function (data) {
         return httpRequest({
             method: 'POST',
             url: remoteAddress + 'register',
-            data:data
+            data: data
         }).then(transferData)
     };
-    this.checkReg = function (phone) {
+    this.checkReg        = function (phone) {
         return httpRequest({
             method: 'GET',
-            url: remoteAddress + 'register?phone='+phone
+            url: remoteAddress + 'register?phone=' + phone
         }).then(transferData)
     };
 
-    this.getLuckyBag=function(){
+    this.getLuckyBag = function () {
         return httpRequest({
-            method:'GET',
-            url:remoteAddress+'fu_package'
+            method: 'GET',
+            url: remoteAddress + 'fu_package'
         }).then(transferData)
     };
 
-    this.getLuckyBagList=function(){
+    this.getLuckyBagList = function () {
         return httpRequest({
-            method:'GET',
-            url:remoteAddress+'my_cards'
+            method: 'GET',
+            url: remoteAddress + 'my_cards'
         }).then(transferData);
     };
 
-    this.getCardConfig=function(){
+    this.getCardConfig = function () {
         return httpRequest({
-            method:'GET',
-            url:remoteAddress+'coupon/card_config'
+            method: 'GET',
+            url: remoteAddress + 'coupon/card_config'
         }).then(transferData);
     };
 
-    this.getCardExt=function(){
+    this.getCardExt = function () {
         return httpRequest({
-            method:'GET',
-            url:remoteAddress+'coupon/card_ext'
+            method: 'GET',
+            url: remoteAddress + 'coupon/card_ext'
         }).then(transferData);
     };
 
-    this.decryptCardCode=function(cardId,encryptCode){
+    this.decryptCardCode = function (cardId, encryptCode) {
         return httpRequest({
-            method:'GET',
-            url:remoteAddress+'coupon/get_code?card_id='+cardId+'&encrypt_code='+encryptCode
+            method: 'GET',
+            url: remoteAddress + 'coupon/get_code?card_id=' + cardId + '&encrypt_code=' + encryptCode
         }).then(transferData);
     };
 
-    this.destroyCard=function(cardId,code){
+    this.destroyCard = function (cardId, code) {
         return httpRequest({
-            method:'POST',
-            url:remoteAddress+'coupon/consume',
-            data:{
-                card_id:cardId,
-                code:code
+            method: 'POST',
+            url: remoteAddress + 'coupon/consume',
+            data: {
+                card_id: cardId,
+                code: code
             }
         }).then(transferData);
     };

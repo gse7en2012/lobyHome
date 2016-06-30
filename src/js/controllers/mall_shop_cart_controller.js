@@ -126,7 +126,8 @@ angular.module('LobyHome')
                 $rootScope.orderDetails=r;
                 location.href = "#/mall/ordersure";
             }).catch(function(e){
-                alert(e)
+                alert(e);
+                location.href='#/mall/address';
             });
             //location.href = "#/mall/ordersure";
         };

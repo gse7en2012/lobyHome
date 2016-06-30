@@ -26,19 +26,6 @@ angular.module('LobyHome')
 
 
 
-        apiService.getCommunitySp($routeParams.cid).then(function(data){
-
-            $scope.proList=data;
-            console.log(data);
-            //$timeout(function () {
-            //
-            //    var projectFlkty = new Flickity('.projectSlider', $scope.listFlickityOptions);
-            //
-            //}, 0);
-
-        });
-
-
         apiService.getCommunityDetails($routeParams.cid).then(function (data) {
             var commData = data.detail;
             updateWxTitle(commData.name);

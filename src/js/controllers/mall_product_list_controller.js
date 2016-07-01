@@ -8,7 +8,7 @@ angular.module('LobyHome')
 
 
             $scope.page=1;
-            $scope.size=8;
+            $scope.size=6;
             $scope.loading=false;
             $scope.noMore=false;
             $scope.loadMore=function(){
@@ -21,7 +21,7 @@ angular.module('LobyHome')
                         if(!isMore){
                             return $scope.noMore=true;
                         }
-                        $scope.prodList.push(data);
+                        $scope.prodList=$scope.prodList.concat(data);
                     });
                 }
             };

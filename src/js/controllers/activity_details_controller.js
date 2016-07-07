@@ -39,7 +39,8 @@ angular.module('LobyHome')
 
                 $scope.$emit('acts', {
                     actName: details.name,
-                    online_time: details.online_time
+                    online_time: details.online_time,
+                    start_time:details.start_time
                 });
 
                 $timeout(function() {

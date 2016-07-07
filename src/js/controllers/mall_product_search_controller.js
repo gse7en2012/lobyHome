@@ -16,7 +16,7 @@ angular.module('LobyHome')
                         if(!isMore){
                             return $scope.noMore=true;
                         }
-                        $scope.prodList.push(data);
+                        $scope.prodList=$scope.prodList.concat(data);
                     });
                 }
             };

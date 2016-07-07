@@ -3,7 +3,7 @@
 </div>
 
 <section class="scrollable" ng-controller="activityController">
-    <div class="scrollable-content lobby-activity-content">
+    <div class="scrollable-content lobby-activity-content"  ui-scroll-bottom="loadMore()">
         <ul class="list-group lobby-activity-list">
             <!--<li ng-repeat="l in list" class="list-group-item" ng-click="toggleS()">{{l}}</li>-->
             <li ng-repeat="act in actList" ng-click="goToDetails(act.id)">
@@ -12,6 +12,10 @@
                 <p>{{act.name}}</p>
             </li>
         </ul>
+        <p style="text-align: center;font-size: 14px;color: #999;margin: 10px auto;" ng-show="loading">正在加载更多...</p>
+        <p style="text-align: center;font-size: 14px;color: #999;margin: 10px auto;" ng-show="noMore">——没有更多了——</p>
+
+
         <p style="text-align: center">联系乐比 客服专线:0755-82557821</p>
         <p style="text-align: center;">网站备案号:<a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备16029734号-1</a></p>
     </div>

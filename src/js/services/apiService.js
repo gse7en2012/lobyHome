@@ -22,10 +22,12 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
     }
 
     //活动列表
-    this.getActivityList    = function () {
+    this.getActivityList    = function (page, size) {
+        size = size || 6;
+        page = page || 1;
         return httpRequest({
             method: 'GET',
-            url: remoteAddress + 'newest_activity'
+            url: remoteAddress + 'newest_activity?offset=' + page + '&size=' + size
         }).then(transferData)
     };
     this.getActivityDetails = function (id) {
@@ -87,17 +89,17 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData)
     };
 
-    this.getProductList    = function (levelType, levelClass,page,size) {
+    this.getProductList    = function (levelType, levelClass, page, size) {
         var lvClass = levelType == 1 ? 'level1_class' : 'level2_class';
         return httpRequest({
             method: 'GET',
-            url: '/api/products?' + lvClass + '=' + levelClass+'&page='+page+'&size='+size
+            url: '/api/products?' + lvClass + '=' + levelClass + '&page=' + page + '&size=' + size
         }).then(transferData)
     };
-    this.searchProductList = function (keyword,page,size) {
+    this.searchProductList = function (keyword, page, size) {
         return httpRequest({
             method: 'GET',
-            url: '/api/products?keyword=' + keyword+'&page='+page+'&size='+size
+            url: '/api/products?keyword=' + keyword + '&page=' + page + '&size=' + size
         }).then(transferData)
     };
 
@@ -153,6 +155,13 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         return httpRequest({
             method: 'GET',
             url: remoteAddress + 'order?order_state=1'
+        }).then(transferData)
+    };
+
+    this.sureOrder = function (id) {
+        return httpRequest({
+            method: 'GET',
+            url: remoteAddress + 'confirm_order?id=' + id
         }).then(transferData)
     };
 

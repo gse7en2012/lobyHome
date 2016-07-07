@@ -28,8 +28,9 @@
                     <div class="bottom">
                         <span class="pull-left">{{order.state}}</span>
                         <span class="pull-right">
-                            <a class="btn btn-yellow-f btn-sm" ng-if="data.order_state==4">退换货</a>
-                            <a class="btn btn-yellow btn-sm" ng-if="data.order_state==1">去付款</a>
+                            <!--<a class="btn btn-yellow-f btn-sm" ng-if="order.order_state==4">退换货</a>-->
+                            <a class="btn btn-yellow btn-sm" ng-if="order.order_state==1">去付款</a>
+                            <a class="btn btn-yellow btn-sm" ng-if="order.order_state==2" ng-click="confirm(order.order_id)">确认收货</a>
                         </span>
                     </div>
                 </div>

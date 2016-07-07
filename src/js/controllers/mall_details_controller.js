@@ -14,8 +14,8 @@ angular.module('LobyHome')
 
         apiService.getProductionDetails($routeParams.good_id).then(function (data) {
             var goodData        = data[0];
-            $scope.price = goodData.price;
-            $scope.hm_price = goodData.origin_price;
+            $scope.price = goodData.origin_price;
+            $scope.hm_price = goodData.price;
             $scope.on_sale_time = goodData.on_sale_time;
             $scope.description  = $sce.trustAsHtml(goodData.description);
             $scope.name         = goodData.name;
@@ -77,7 +77,8 @@ angular.module('LobyHome')
                 $rootScope.orderDetails = r;
                 location.href           = "#/mall/ordersure";
             }).catch(function (e) {
-                toastr.error(e)
+                alert(e);
+                location.href='#/mall/address';
             });
         }
 

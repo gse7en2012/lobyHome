@@ -16,6 +16,7 @@ var lobyApp = angular.module('LobyHome', [
         .when('/reg', {templateUrl: 'reg.html', reloadOnSearch: false})
         .when('/mall', {templateUrl: 'mall.html', reloadOnSearch: false})
         .when('/mall/luckybag',{templateUrl:'cardList.html',reloadOnSearch: false})
+        .when('/mall/card/add',{templateUrl:'cardPickAuto.html',reloadOnSearch: false})
         .when('/mall/luckybag/add',{templateUrl:'cardAdd.html',reloadOnSearch: false})
         .when('/mall/luckybag/pick',{templateUrl:'cardPick.html',reloadOnSearch: false})
         .when('/mall/shopcart', {templateUrl: 'mallShopCart.html', reloadOnSearch: false})

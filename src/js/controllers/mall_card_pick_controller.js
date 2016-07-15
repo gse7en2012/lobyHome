@@ -44,7 +44,6 @@ angular.module('LobyHome')
 
 
         apiService.getCardConfig().then(function(data){
-            $scope.erer=JSON.stringify(data);
             wx.chooseCard({
                 //  shopId: '', // 门店Id
                 //  cardType: '', // 卡券类型

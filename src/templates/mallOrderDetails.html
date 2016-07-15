@@ -68,7 +68,9 @@
                 <a class="btn btn-yellow-f btn-block pull-right"  ng-if="orderDetails.order_state<2" ng-click="cancelOrder()">取消订单</a>
                 <a class="btn btn-yellow btn-block pull-right" ng-href="#/mall/ordersure" ng-if="orderDetails.order_state<2">去付款</a>
 
+
                 <a class="btn btn-yellow btn-block pull-right" ng-if="orderDetails.order_state>=2" ng-href="#/mall/details/{{orderDetails.product_id}}">再次购买</a>
+                <a class="btn btn-yellow-f btn-block pull-right" ng-if="order.order_state==2||order.order_state==4||order.order_state==5" ng-href="#/mall/return/{{orderDetails.order_id}}">申请退款</a>
             </div>
         </div>
 

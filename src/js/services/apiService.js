@@ -311,5 +311,13 @@ angular.module('LobyHome').service('apiService', ['$http', '$q', function ($http
         }).then(transferData);
     };
 
+    this.returnMoney=function(opts){
+        return httpRequest({
+            method: 'POST',
+            url: remoteAddress + 'ask_refund',
+            data: opts
+        }).then(transferData);
+    };
+
     //this.deleteInfoArt=(artId)=>httpRequest({method: 'POST', url: `/info/art/delete`, data: {art_id:artId}});
 }]);

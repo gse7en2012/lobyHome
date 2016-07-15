@@ -29,6 +29,7 @@ var lobyApp = angular.module('LobyHome', [
         .when('/mall/ordersure', {templateUrl: 'mallOrderSure.html', reloadOnSearch: false})
         .when('/mall/order/list', {templateUrl: 'mallOrderList.html', reloadOnSearch: false})
         .when('/mall/order/details/:order_id', {templateUrl: 'mallOrderDetails.html', reloadOnSearch: false})
+        .when('/mall/return/:order_id', {templateUrl: 'mallReturn.html', reloadOnSearch: false})
         .when('/mall/details/:good_id', {templateUrl: 'mallDetails.html', reloadOnSearch: false})
         .when('/share', {templateUrl: 'share.html', reloadOnSearch: false})
         .when('/community', {templateUrl: 'community.html', reloadOnSearch: false})

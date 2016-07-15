@@ -25,4 +25,8 @@ angular.module('LobyHome')
             })
         }
 
+        $scope.returnMoney=function(id){
+            alert('开发中!');
+        }
+
     });

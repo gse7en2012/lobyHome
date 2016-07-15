@@ -3,7 +3,7 @@ angular.module('LobyHome')
     .controller('mallOrderListController', function ($scope, $timeout, $rootScope, updateWxTitle, apiService) {
         updateWxTitle('我的订单');
 
-        var stateList = ['全部', '未完成', '待收货', '退货单', '已完成'];
+        var stateList = ['全部', '未完成', '未发货', '退货单', '已完成','已发货'];
 
 
         apiService.getMallOrder().then(function (data) {
@@ -25,6 +25,19 @@ angular.module('LobyHome')
                     }
                 })
             })
+        };
+
+        $scope.gotoPay=function(){
+            location.href='#/mall/ordersure';
+        };
+
+        $scope.cancelOrder=function(){
+            if(confirm('确定取消该订单?')){
+                apiService.cancelPayOrder().then(function(data){
+                    alert('取消订单成功!');
+                    window.reload();
+                })
+            }
         }
 
     });

@@ -25,6 +25,8 @@ angular.module('LobyHome')
             $scope.receiver  = data.receiver_name;
             $scope.receiver_address = data.receiver_address;
             $scope.receiver_phone_number = data.receiver_phone_number;
+        }).catch(function(e){
+            location.href='#/mall';
         });
 
 

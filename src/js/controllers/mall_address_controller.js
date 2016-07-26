@@ -8,24 +8,25 @@ angular.module('LobyHome')
 
         apiService.getAddressList().then(function (data) {
             $scope.addressList = data;
-            if(data.length>0)
-            $scope.addressList.forEach(function (item) {
-                item.receiver_phone_number = item.receiver_phone_number.slice(0, 3) + '****' + item.receiver_phone_number.slice(7, 11)
-            })
+            if (data.length > 0)
+                $scope.addressList.forEach(function (item) {
+                    item.receiver_phone_number = item.receiver_phone_number.slice(0, 3) + '****' + item.receiver_phone_number.slice(7, 11)
+                })
         });
 
 
         $scope.addressBack = function () {
-
             if (from == 'order') {
                 location.href = '#/mall/ordersure'
+            } else if ($rootScope.mallAddressReturnMall) {
+                location.href = $rootScope.mallAddressReturnMall;
             } else {
                 history.back()
             }
         };
 
         $scope.chooseOrderAddress = function () {
-            if(from=='order'){
+            if (from == 'order') {
                 location.href = '#/mall/ordersure'
             }
         };
@@ -47,7 +48,9 @@ angular.module('LobyHome')
 
         $scope.deleteAddress = function (id) {
             if (confirm('确定删除该地址?')) {
-                apiService.deleteAddress({id: id})
+                apiService.deleteAddress({id: id}).then(function () {
+                    window.reload();
+                })
             }
         }
     });

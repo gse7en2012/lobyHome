@@ -2,7 +2,8 @@ angular.module('LobyHome')
 
     .controller('mallOrderDetailsController', function ($scope, $timeout, $rootScope, $routeParams,updateWxTitle, apiService) {
         updateWxTitle('订单详情');
-        var stateList=['全部','未完成','待收货','退货单','已完成'];
+        var stateList = ['全部', '未完成', '未发货', '退货单', '已完成','已发货'];
+
         var orderId=$routeParams.order_id;
         var state=$routeParams.order_state;
 

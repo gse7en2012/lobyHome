@@ -16,7 +16,7 @@ angular.module('LobyHome')
                 refund_connection: $scope.refund_connection
             }).then(function(data){
                 alert(data);
-                location.href='#/mall/order/details/'+orderId
+                location.href='#/mall/order/list/'
             }).catch(function(e){
                 alert(e)
             })

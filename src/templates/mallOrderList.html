@@ -31,8 +31,8 @@
                             <!--<a class="btn btn-yellow-f btn-sm" ng-if="order.order_state==4">退换货</a>-->
                               <a class="btn btn-yellow-f btn-sm" ng-if="order.order_state==1" ng-click="cancelOrder(order.order_id)">取消订单</a>
                             <a class="btn btn-yellow btn-sm" ng-if="order.order_state==1" ng-click="gotoPay(order.order_id)">去付款</a>
-                            <a class="btn btn-yellow btn-sm" ng-if="order.order_state==2" ng-click="confirm(order.order_id)">确认收货</a>
-                            <a class="btn btn-yellow-f btn-sm" ng-if="order.order_state==2||order.order_state==4||order.order_state==5" ng-href="#/mall/return/{{orderDetails.order_id}}">申请退款</a>
+                            <a class="btn btn-yellow btn-sm" ng-if="order.order_state==5" ng-click="confirm(order.order_id)">确认收货</a>
+                            <a class="btn btn-yellow-f btn-sm" ng-if="order.order_state==2||order.order_state==4" ng-href="#/mall/return/{{order.order_id}}">申请退款</a>
                         </span>
                     </div>
                 </div>

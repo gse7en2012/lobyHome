@@ -79,6 +79,7 @@ angular.module('LobyHome')
             }).catch(function (e) {
                 alert(e.msg);
                 if(e.code=='304') {
+                    $rootScope.mallAddressReturnMall=location.href;
                     location.href = '#/mall/address';
                 }
                 if(e.code=='303') {

@@ -57,6 +57,7 @@
                     <p class="l1">实际付款:<i class="fa fa-cny"></i>{{total_pp}}</p>
 
                     <p class="l2">下单时间:{{orderDetails.order_date}}</p>
+                    <p class="l2">物流单号:{{orderDetails.logistics_number}}</p>
                 </div>
             </div>
         </div>
@@ -70,7 +71,7 @@
 
 
                 <a class="btn btn-yellow btn-block pull-right" ng-if="orderDetails.order_state>=2" ng-href="#/mall/details/{{orderDetails.product_id}}">再次购买</a>
-                <a class="btn btn-yellow-f btn-block pull-right" ng-if="order.order_state==2||order.order_state==4||order.order_state==5" ng-href="#/mall/return/{{orderDetails.order_id}}">申请退款</a>
+                <a class="btn btn-yellow-f btn-block pull-right" ng-if="orderDetails.order_state==2||orderDetails.order_state==4||orderDetails.order_state==5" ng-href="#/mall/return/{{orderDetails.order_id}}">申请退款</a>
             </div>
         </div>
 

@@ -50,7 +50,8 @@ angular.module('LobyHome')
                         success: function (res) {
                             alert('付款成功!');
                             // 支付成功后的回调函数
-                            $rootScope.Ui.turnOn('modal3');
+                            //$rootScope.Ui.turnOn('modal3');
+                            location.href='#/mall/order/list';
                         },
                         cancel:function(res){
                             alert('取消支付!');

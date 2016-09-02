@@ -45,7 +45,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td width="50%">
+                            <td width="40%">
                                 <div class="lobby-concat" style="margin-top: 10px;font-size: 14px;">
                                     <a href="tel:{{actInfo.phone_number_of_activity_leader}}" style="color: #333;">
                                         <i class="fa fa-phone fa-flip-horizontal"></i>{{actInfo.concatName}}<br>{{actInfo.phone_number_of_activity_leader}}
@@ -57,9 +57,9 @@
                                 </a>
                                 </div>
                             </td>
-                            <td width="50%">
-                                <p class="lobby-activity-details col-xs-offset-1" style="margin-top: 20px;font-size: 14px;">
-                                    活动时间: <br>{{actInfo.start_time}}<br>
+                            <td width="60%" >
+                                <p class="lobby-activity-details" style="margin-top: 20px;font-size: 14px;position: relative;">
+                                    活动时间: <br> <select class="form-control" ng-model="start_time"  ng-options="option.name for option in startTimeList track by option.value" style="padding-left:0;padding-right:0; " ng-change="changStartTime()"></select> <br>
                                     活动费用: {{actInfo.price==0?'免费':actInfo.price+'元'}}
                                 </p>
                             </td>

@@ -15,6 +15,23 @@ angular.module('LobyHome')
             };
 
 
+            $scope.startTimeList=[];
+
+
+
+            $scope.changStartTime=function(){
+                console.log(({
+                    actName: $scope.actInfo.name,
+                    online_time: $scope.actInfo.online_time,
+                    start_time: $scope.start_time.value
+                }));
+                $scope.$emit('acts', {
+                    actName: $scope.actInfo.name,
+                    online_time: $scope.actInfo.online_time,
+                    start_time:$scope.start_time.value
+                });
+            };
+
             apiService.getActivityDetails($routeParams.act_id).then(function (data) {
                 var details    = data[0];
                 $scope.actInfo = {
@@ -22,7 +39,7 @@ angular.module('LobyHome')
                     actName: details.name,
                     location: details.address,
                     concatName: details.name_of_activity_leader,
-                    start_time:details.start_time,
+                    //start_time:details.start_time,
                     phone_number_of_activity_leader:details.phone_number_of_activity_leader,
                     time: details.time,
                     lastTime: details.duration,
@@ -35,12 +52,20 @@ angular.module('LobyHome')
                     longitude:details.longitude,
                     latitude:details.latitude
                 };
+
+                details.start_time.forEach(function(i){
+                    $scope.startTimeList.push({
+                        value:i,name:i
+                    })
+                });
+                $scope.start_time=$scope.startTimeList[0];
+
                 $scope.imgList = eval(details.images);
 
                 $scope.$emit('acts', {
                     actName: details.name,
                     online_time: details.online_time,
-                    start_time:details.start_time
+                    start_time:details.start_time[0]
                 });
 
                 $timeout(function() {
@@ -60,7 +85,8 @@ angular.module('LobyHome')
                     activity_id: actId,
                     user_id: $scope.userInfo.userId,
                     timestamp: $scope.timestamp,
-                    nonce_str: $scope.nonceStr
+                    nonce_str: $scope.nonceStr,
+                    start_time:$scope.start_time.value
                 }).then(function (data) {
                     if (data.errCode != 200) {
                         return toastr.error(data.result);

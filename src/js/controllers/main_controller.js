@@ -38,7 +38,8 @@ angular.module('LobyHome.controllers.Main', [])
             if (hashList.length <= 1) {
                 state = '/'
             } else {
-                state = hashList[1].replace(/(\?|\/|&|=)/, ' ').split(' ')[0];
+                state = hashList[1];
+                //state = hashList[1].replace(/(\?|\/|&|=)/, ' ').split(' ')[0];
             }
             location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize' +
                 '?appid=' + appId + '&' +
